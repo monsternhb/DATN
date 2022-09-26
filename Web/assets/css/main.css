@@ -279,3 +279,149 @@
   margin-top: 6px;
   font-size: 2rem;
 }
+
+/* History CSS */
+.history__btn,
+.alarm__btn {
+  margin-top: 6px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  height: 60px;
+}
+
+.btn__history,
+.btn__alarm {
+  border-color: var(--grad-1);
+  border-radius: 6px;
+  box-shadow: 2px 2px var(--text-color) 2px;
+  cursor: pointer;
+  width: 20%;
+  color: var(--text-color);
+}
+
+.form-option,
+.alarm__form-option {
+  margin-top: 10px;
+  border-radius: 3px;
+  height: 35px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--light-background);
+}
+
+.option-text,
+.alarm__option-text {
+  font-size: 1.4rem;
+  line-height: 35px;
+  font-weight: 500;
+  margin: 4px;
+}
+
+.date-from,
+.alarm__date-from {
+  padding: 3px;
+  color: var(--text-color);
+}
+
+.btn__date-from,
+.btn-alarm__date-from {
+  float: right;
+  margin-top: 6px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-color: var(--text-color);
+}
+
+.history__table,
+.alarm__table,
+.reg__table {
+  background-color: var(--color-background);
+  padding: 12px;
+  margin: 20px 40px 0 40px;
+}
+
+.table {
+  width: 100%;
+  height: 34px;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 8px;
+  border: 1px solid var(--light-background);
+  border-radius: 4px;
+}
+
+.table__header {
+  background-color: #ffe8aa;
+}
+
+.table__id,
+.table__time,
+.table__controller,
+.table__subject,
+.table__alarm,
+.table__name,
+.table__role {
+  line-height: 34px;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-left: 10px;
+  flex: 1;
+}
+
+.welcome {
+  font-size: 1.9rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.login__input {
+  margin-top: 6px;
+  border: none;
+  padding: 0.5rem 2rem;
+  font-size: 1.6rem;
+  font-family: inherit;
+  text-align: center;
+  width: 16rem;
+  border-radius: 10rem;
+  margin-right: 1rem;
+  color: inherit;
+  border: 1px solid #fff;
+  transition: all 0.3s;
+}
+
+.login__input:focus {
+  outline: none;
+  border: 1px solid #ccc;
+}
+
+.login__input::placeholder {
+  color: #bbb;
+}
+
+.login__btn {
+  border: none;
+  background: none;
+  font-size: 2.2rem;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.login__btn:hover,
+.login__btn:focus,
+.btn--sort:hover,
+.btn--sort:focus {
+  outline: none;
+  color: #777;
+}
+
+.form-reg {
+  margin-top: 100px;
+}
+
+.reg__table {
+  margin-top: 100px;
+}

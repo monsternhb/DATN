@@ -55,6 +55,7 @@
       <div class="container">
         <div class="grid">
           <div class="grid__row">
+            <!-- Header nav -->
             <div class="grid__column-2">
               <div class="nav__header">
                 <div
@@ -81,7 +82,8 @@
               </div>
             </div>
 
-            <div class="grid__column-10">
+            <!-- Home page -->
+            <div class="home__page grid__column-10 hidden">
               <div class="home__control">
                 <div class="grid__row">
                   <!-- Hand mode -->
@@ -207,6 +209,180 @@
                             placeholder="Number total"
                           />
                           <p class="current__count">0</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- History page -->
+            <div class="history__page grid__column-10 hidden">
+              <div class="history__control">
+                <div class="grid__row">
+                  <div class="history__btn">
+                    <button class="btn__primary btn__history">
+                      view controller
+                    </button>
+                    <button class="btn__primary btn__history">
+                      view total products
+                    </button>
+                    <button class="btn__primary btn__history">Export</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="history__option">
+                <div class="grid__row">
+                  <form action="" class="form-option">
+                    <span class="option-text">Date from</span>
+                    <input
+                      type="text"
+                      class="date-from"
+                      placeholder="dd/mm/yy"
+                    />
+                    <span class="option-text">Date to</span>
+                    <input
+                      type="text"
+                      class="date-from"
+                      placeholder="dd/mm/yy"
+                    />
+                    <input
+                      type="submit"
+                      class="btn__date-from btn__primary"
+                      value="Search"
+                    />
+                  </form>
+                </div>
+              </div>
+
+              <div class="history__table">
+                <div class="grid__row">
+                  <!-- table tittle -->
+                  <div class="table table__header">
+                    <span class="table__id">ID</span>
+                    <span class="table__time">Time</span>
+                    <span class="table__controller">Controller</span>
+                  </div>
+
+                  <!-- Table data -->
+                  <div class="table table__data">
+                    <span class="table__id">13203091309139103ccccc</span>
+                    <span class="table__time">12/07/2021</span>
+                    <span class="table__controller"
+                      >Click button from web sever</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Alarm page -->
+            <div class="alarm__page grid__column-10 hidden">
+              <div class="alarm__control">
+                <div class="grid__row">
+                  <div class="alarm__btn">
+                    <button class="btn__primary btn__alarm">
+                      view controller
+                    </button>
+                    <button class="btn__primary btn__alarm">
+                      view total products
+                    </button>
+                    <button class="btn__primary btn__alarm">Export</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="alarm__option">
+                <div class="grid__row">
+                  <form action="" class="alarm__form-option">
+                    <span class="alarm__option-text">Date from</span>
+                    <input
+                      type="text"
+                      class="alarm__date-from"
+                      placeholder="dd/mm/yy"
+                    />
+                    <span class="alarm__option-text">Date to</span>
+                    <input
+                      type="text"
+                      class="alarm__date-from"
+                      placeholder="dd/mm/yy"
+                    />
+                    <input
+                      type="submit"
+                      class="btn-alarm__date-from btn__primary"
+                      value="Search"
+                    />
+                  </form>
+                </div>
+              </div>
+
+              <div class="alarm__table">
+                <div class="grid__row">
+                  <!-- table tittle -->
+                  <div class="table table__header">
+                    <span class="table__id">ID</span>
+                    <span class="table__time">Time</span>
+                    <span class="table__subject">Subject</span>
+                    <span class="table__alarm">Alarm</span>
+                  </div>
+
+                  <!-- Table data -->
+                  <div class="table table__data">
+                    <span class="table__id">13203091309139103ccccc</span>
+                    <span class="table__time">12/07/2021</span>
+                    <span class="table__subject">Conveyer</span>
+                    <span class="table__alarm">No product</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Register page -->
+            <div class="reg__page grid__column-10">
+              <div class="reg_control">
+                <div class="grid__row">
+                  <div class="grid__column-2 form-reg">
+                    <p class="welcome">Create Account</p>
+                    <form class="login">
+                      <input
+                        type="text"
+                        placeholder="user name"
+                        class="login__input login__input--user"
+                      />
+                      <!-- In practice, use type="password" -->
+                      <input
+                        type="password"
+                        placeholder="PIN"
+                        maxlength="4"
+                        class="login__input login__input--pin"
+                      />
+                      <input
+                        type="password"
+                        placeholder="confirm PIN"
+                        maxlength="4"
+                        class="login__input login__input--pin"
+                      />
+                      <button class="login__btn">&rarr;</button>
+                    </form>
+                  </div>
+
+                  <div class="grid__column-2-3">
+                    <div class="reg__table">
+                      <div class="grid__row">
+                        <!-- table tittle -->
+                        <div class="table table__header">
+                          <span class="table__id">ID</span>
+                          <span class="table__name">Name</span>
+                          <span class="table__role">Role</span>
+                        </div>
+
+                        <!-- Table data -->
+                        <div class="table table__data">
+                          <span class="table__id">13203091309139103ccccc</span>
+                          <span class="table__name">admin</span>
+                          <span class="table__role">user</span>
                         </div>
                       </div>
                     </div>
