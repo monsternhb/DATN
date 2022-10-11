@@ -129,7 +129,7 @@
 
 .nav__header {
   background-color: #e9a7a0;
-  height: 100vh;
+  height: 508px;
 }
 .nav__logo-img {
   background-color: #e9a7a0;
@@ -163,6 +163,11 @@
 .nav__item:hover {
   background-color: antiquewhite;
   cursor: pointer;
+}
+
+.nav__Link {
+  text-decoration: none;
+  color: var(--text-color);
 }
 
 .nav__icon {
@@ -424,4 +429,18 @@
 
 .reg__table {
   margin-top: 100px;
+}
+
+.footer__text {
+  text-align: center;
+  color: var(--text-color);
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 48px;
+}
+
+.footer {
+  height: 48px;
+  border-top: 4px solid var(--main-color);
+  background-color: var(--main-color);
 }

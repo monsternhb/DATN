@@ -10,6 +10,7 @@ class HistoryController {
     //   res.json(histories);
     // });
 
+    // Get data from database and render it
     History.find({})
       .then(histories => {
         res.render('history', { histories: multiMongooseToObject(histories) });

@@ -4,9 +4,9 @@ const connect = async function () {
   try {
     // connect to database
     await mongoose.connect('mongodb://localhost:27017/HCMUT_DATN');
-    console.log('oke');
+    console.log('connect DB successful');
   } catch (err) {
-    console.log('not oke');
+    console.log('error when connect DB');
   }
 };
 

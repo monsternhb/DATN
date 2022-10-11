@@ -1,47 +1,60 @@
 <!-- Register page -->
-<div class="reg__page grid__column-10">
-  <div class="reg_control">
-    <div class="grid__row">
-      <div class="grid__column-2 form-reg">
-        <p class="welcome">Create Account</p>
-        <form class="login">
-          <input
-            type="text"
-            placeholder="user name"
-            class="login__input login__input--user"
-          />
+<div class='reg__page grid__column-10'>
+  <div class='reg_control'>
+    <div class='grid__row'>
+      <div class='grid__column-2 form-reg'>
+        <p class='welcome'>Create Account</p>
+        <form class='login' method='POST' action='/register/store'>
+
+          <div class='login'>
+            <label for='username'></label>
+            <input
+              type='text'
+              placeholder='User name'
+              class='login__input login__input--user'
+              id='username'
+              name='username'
+            />
+          </div>
+
           <!-- In practice, use type="password" -->
-          <input
-            type="password"
-            placeholder="PIN"
-            maxlength="4"
-            class="login__input login__input--pin"
-          />
-          <input
-            type="password"
-            placeholder="confirm PIN"
-            maxlength="4"
-            class="login__input login__input--pin"
-          />
-          <button class="login__btn">&rarr;</button>
+          <div class='login'>
+            <label for='pass'></label>
+            <input
+              type='password'
+              placeholder='PIN'
+              maxlength='4'
+              class='login__input login__input--pin'
+              id='pass'
+              name='pass'
+            />
+            <input
+              type='password'
+              placeholder='Confirm'
+              maxlength='4'
+              class='login__input login__input--pin'
+            />
+          </div>
+
+          <button class='login__btn'>&rarr;</button>
         </form>
       </div>
 
-      <div class="grid__column-2-3">
-        <div class="reg__table">
-          <div class="grid__row">
+      <div class='grid__column-2-3'>
+        <div class='reg__table'>
+          <div class='grid__row'>
             <!-- table tittle -->
-            <div class="table table__header">
-              <span class="table__id">ID</span>
-              <span class="table__name">Name</span>
-              <span class="table__role">Role</span>
+            <div class='table table__header'>
+              <span class='table__id'>ID</span>
+              <span class='table__name'>Name</span>
+              <span class='table__role'>Role</span>
             </div>
 
             <!-- Table data -->
-            <div class="table table__data">
-              <span class="table__id">13203091309139103ccccc</span>
-              <span class="table__name">admin</span>
-              <span class="table__role">user</span>
+            <div class='table table__data'>
+              <span class='table__id'>13203091309139103ccccc</span>
+              <span class='table__name'>admin</span>
+              <span class='table__role'>user</span>
             </div>
           </div>
         </div>
