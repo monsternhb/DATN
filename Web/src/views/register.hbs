@@ -7,26 +7,26 @@
         <form class='login' method='POST' action='/register/store'>
 
           <div class='login'>
-            <label for='username'></label>
+            <label for='user_name'></label>
             <input
               type='text'
               placeholder='User name'
               class='login__input login__input--user'
-              id='username'
-              name='username'
+              id='user_name'
+              name='user_name'
             />
           </div>
 
           <!-- In practice, use type="password" -->
           <div class='login'>
-            <label for='pass'></label>
+            <label for='pass_word'></label>
             <input
               type='password'
               placeholder='PIN'
               maxlength='4'
               class='login__input login__input--pin'
               id='pass'
-              name='pass'
+              name='pass_word'
             />
             <input
               type='password'
@@ -34,6 +34,15 @@
               maxlength='4'
               class='login__input login__input--pin'
             />
+          </div>
+
+          <div class='login'>
+            <select name='role' class='login__input login__input--user'>
+              <option value='admin'>Admin</option>
+              <option value='operator'>Operator</option>
+              <option value='viewer'>Viewer</option>
+            </select>
+
           </div>
 
           <button class='login__btn'>&rarr;</button>

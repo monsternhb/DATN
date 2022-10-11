@@ -4,10 +4,25 @@
     <div class='modal__login'>
       <div class='login__header'>Login</div>
 
-      <form method='' action=''>
+      <form method='POST' action='/login'>
+
         <div class='login__group'>
-          <input type='text' class='login__user' placeholder='User name' />
-          <input type='text' class='login__pass' placeholder='Pass word' />
+          <label for='user_name'></label>
+            <input
+              type='text'
+              placeholder='User name'
+              class='login__user'
+              name='user_login'
+            />
+          </div>
+          <label for='pass_word'></label>
+            <input
+              type='password'
+              placeholder='PIN'
+              maxlength='4'
+              class='login__pass'
+              name='pass_login'
+            />
         </div>
         <div class='login__btn'>
           <button class='btn__login'>Login</button>

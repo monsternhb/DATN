@@ -7,6 +7,7 @@ const port = 3000;
 const methodOverride = require('method-override');
 const publicPath = path.join(__dirname, '../assets'); // set static folder when they try to look up
 const route = require('../routes');
+const cookieParser = require('cookie-parser');
 
 app.use(express.static(publicPath));
 app.use(methodOverride('_method'));
@@ -22,17 +23,26 @@ app.use(express.json());
 // HTTP logger
 app.use(morgan('combined'));
 
+// Cookie
+app.use(cookieParser());
+
 // Template engine
 
 app.engine(
   'hbs',
   hbs.engine({
     extname: '.hbs',
+
     helpers: {
-      // formatTime: time => {
-      //   let index = formatTime(time).indexOf('(');
-      //   return formatTime(time).slice(0, index);
-      // },
+      formatDate(time) {
+        let newTime = String(time);
+        let index = newTime.indexOf('(');
+        return newTime.slice(0, index);
+      },
+
+      foo() {
+        return 'Foo';
+      },
     },
   })
 );

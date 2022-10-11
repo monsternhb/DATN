@@ -43,7 +43,7 @@
       {{#each histories}}
         <div class='table table__data'>
           <span class='table__id'>{{this._id}}</span>
-          <span class='table__time'>{{this.time}}</span>
+          <span class='table__time'>{{formatDate this.time}}</span>
           <span class='table__controller'>{{this.controller}}</span>
         </div>
       {{/each}}

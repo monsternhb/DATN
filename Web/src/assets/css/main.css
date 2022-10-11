@@ -28,7 +28,7 @@
 }
 
 .modal__login {
-  height: 300px;
+  min-height: 200px;
   width: 350px;
   padding: 20px;
   color: var(--white-color);
