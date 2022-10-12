@@ -33,6 +33,7 @@
               placeholder='Confirm'
               maxlength='4'
               class='login__input login__input--pin'
+              name="confirm"
             />
           </div>
 
@@ -60,11 +61,14 @@
             </div>
 
             <!-- Table data -->
+            {{#each registers}}
             <div class='table table__data'>
-              <span class='table__id'>13203091309139103ccccc</span>
-              <span class='table__name'>admin</span>
-              <span class='table__role'>user</span>
+            <span class='table__id'>{{this._id}}</span>
+            <span class='table__name'>{{this.user_name}}</span>
+            <span class='table__role'>{{this.role}}</span>
             </div>
+
+            {{/each}}
           </div>
         </div>
       </div>

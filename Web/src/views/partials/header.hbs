@@ -7,3 +7,15 @@
     </div>
   </div>
 </div>
+<form method="GET" action="/home/logout" name = 'form__log-out'></form>
+
+<script>
+  document.addEventListener('DOMContentLoaded',function(){
+      const btnLogOut = document.querySelector('.btn--log-out');
+      const formLogOut=document.forms['form__log-out'];
+      console.log(formLogOut);
+      btnLogOut.addEventListener('click',function(){
+        formLogOut.submit();
+      })
+  })
+</script>

@@ -8,6 +8,10 @@ const methodOverride = require('method-override');
 const publicPath = path.join(__dirname, '../assets'); // set static folder when they try to look up
 const route = require('../routes');
 const cookieParser = require('cookie-parser');
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require('socket.io');
+const io = new Server(server);
 
 app.use(express.static(publicPath));
 app.use(methodOverride('_method'));
@@ -54,8 +58,14 @@ app.set('views', path.join(__dirname, '../views'));
 // route init
 route(app);
 
-//route
+// socket connection
+io.on('connection', socket => {
+  console.log('a user connected');
+  socket.on('client message', msg => {
+    console.log('Click ' + msg + ' from Web client');
+  });
+});
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`app listening on port ${port}`);
 });

@@ -3,8 +3,14 @@ const router = express.Router();
 
 // import function
 const registerController = require('../app/controllers/RegisterController');
+const middleWare = require('../app/middlewares/middle');
 
 router.post('/store', registerController.store);
-router.get('/', registerController.index);
+router.get(
+  '/',
+  middleWare.checkLogin,
+  middleWare.checkAdmin,
+  registerController.index
+);
 
 module.exports = router;

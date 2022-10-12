@@ -36,7 +36,7 @@ class LoginController {
       res.cookie('token', data.token, 2);
       res.redirect('../home');
     } catch (err) {
-      console.log(err);
+      res.json('PLEASE LOGIN AGAIN!!');
     }
   }
 }

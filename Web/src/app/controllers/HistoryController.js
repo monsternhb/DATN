@@ -4,12 +4,6 @@ const History = require('../models/History');
 class HistoryController {
   // [GET] / history
   index(req, res, next) {
-    // res.render("history");
-    // History.find({}, (err, histories) => {
-    //   if (err) return;
-    //   res.json(histories);
-    // });
-
     // Get data from database and render it
     History.find({})
       .then(histories => {
