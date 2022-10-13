@@ -96,7 +96,7 @@
                 class='total__setting'
                 placeholder='Number total'
               />
-              <p class='current__count'>0</p>
+              <p class='current__count count-sp1'>0</p>
             </div>
 
             <div class='grid__column-product'>
@@ -107,7 +107,7 @@
                 class='total__setting'
                 placeholder='Number total'
               />
-              <p class='current__count'>0</p>
+              <p class='current__count count-sp2'>0</p>
             </div>
 
             <div class='grid__column-product'>
@@ -118,7 +118,7 @@
                 class='total__setting'
                 placeholder='Number total'
               />
-              <p class='current__count'>0</p>
+              <p class='current__count count-sp3'>0</p>
             </div>
           </div>
         </div>
@@ -127,13 +127,24 @@
   </div>
 </div>
 
+<form method="GET" action="" name = 'form__cre-his'></form>
+
 <script src='/socket.io/socket.io.js'></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function(){ 
+  document.addEventListener('DOMContentLoaded', async function(){ 
 
+      const formNewHis=document.forms['form__cre-his'];
       const container = document.querySelector('.home__control');
       // get role of user
-      const role = container.id;
+      const role = await container.id;
+      const socket = io();
+
+      
+      // render from sever socket emit
+      socket.on('followplc', function(msg) {
+        const countSp1 = document.querySelector('.count-sp1');
+        countSp1.textContent = msg;
+      });
       
       if (role === 'viewer'){
         // config viewer
@@ -142,16 +153,21 @@
             btn.classList.remove('btn--home');
             btn.classList.add('btn--disable');
           })
-          console.log(btns);
       }
       else{
-      const socket = io();
-
       // handle button
       container.addEventListener('click',function(e){ 
+          e.preventDefault();
           const btn = e.target.closest('.btn__primary'); 
           if (!btn) return;
-          socket.emit('client message', btn.textContent.trim());
-          console.log(btn.textContent); 
-  })}})
+          const behavior = btn.textContent.trim();
+          // send to sever -> mqtt
+          socket.emit('client message', behavior );
+          // get creat history
+          
+          formNewHis.submit();
+          
+
+  })
+  }})
 </script>

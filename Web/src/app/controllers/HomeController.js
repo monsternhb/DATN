@@ -1,6 +1,7 @@
 const { multiMongooseToObject } = require('../../helpers/mongooseHelper');
 const Register = require('../models/Register');
 const jwt = require('jsonwebtoken');
+const History = require('../models/History');
 
 class HomeController {
   // [GET] /home (viewer)
@@ -12,6 +13,18 @@ class HomeController {
   //[GET] /home/logout
   logout(req, res, next) {
     res.redirect('../');
+  }
+
+  // [GET] / home /:slug /create
+  async createHistory(req, res, next) {
+    const newBehavior = 'Click ' + req.params.slug + ' from Web client';
+    console.log(newBehavior);
+    //creat new history when click on web client
+    await History.create({ behavior: newBehavior })
+      .then(data => {
+        res.redirect('../');
+      })
+      .catch(next);
   }
 }
 

@@ -12,10 +12,6 @@ class HistoryController {
       .catch(next);
   }
 
-  // [GET] / history / : slug
-  show(req, res) {
-    res.send('Course detail:' + req.params.slug);
-  }
 }
 
 module.exports = new HistoryController();
