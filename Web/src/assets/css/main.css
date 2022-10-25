@@ -233,12 +233,95 @@
   opacity: 0.7;
 }
 
+.btn__dash{
+  
+  width: 100%;
+}
+
 .btn--disable {
   opacity: 0.3;
 }
 
+.container--dash > .btn__dash{
+  flex: 50%; /* or - flex: 0 50% - or - flex-basis: 50% - */
+  /*demo*/
+}
+
+
+
+.btn--edit1{
+  /* position: relative; */
+  left: 9px;
+}
+
+.btn--edit2{
+  /* position: relative; */
+  right: 9px;
+}
+
+.text-reset{
+  /* position: relative; */
+  right: 5px;
+}
+
+.button-box {
+  display: flex;
+  justify-content: space-around;
+	width: 100px;
+	margin: 8px auto 0 auto;
+	position: relative;
+	border-radius: 30px;
+	background: #fff
+}
+
+.form-box{
+  display: inline-block;
+}
+
+.toggle-btn {
+  color: var(--text-color);
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 500;
+	padding: 10px 4px;
+	cursor: pointer;
+	background: transparent;
+	border: 0;
+	outline: none;
+	position: relative;
+	text-align: center;
+}
+
+#btn--switch {
+	left: 0;
+	top: 0;
+	position: absolute;
+	width: 50px;
+	height: 100%;
+	background: var(--btn-background);
+	border-radius: 30px;
+	transition: .5s;
+}
+
 .btn--dash {
+  position: relative;
+  left: 18px;
   margin-top: 6px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%; 
+  border: none;
+  box-shadow: 4px 1px 3px #333;
+}
+
+.btn__dash-text{
+  text-transform: uppercase;
+  margin-top: 3px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 .icon__type {

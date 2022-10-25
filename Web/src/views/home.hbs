@@ -21,13 +21,36 @@
         <div class='home__mode'>
           <div class='home__mode-dashboard'>
             <div class='mode__tittle'>Dashboard</div>
-            <div class='mode__container'>
-              <button class='btn__primary btn--dash btn--home'>Start</button>
-              <button class='btn__primary btn--dash btn--home'>Stop</button>
-              <button class='btn__primary btn--dash btn--home'>Reset</button>
-              <button class='btn__primary btn--dash btn--home'>Emergency</button>
-              <button class='btn__primary btn--dash btn--home'>Auto</button>
-              <button class='btn__primary btn--dash btn--home'>Man</button>
+            <div class='mode__container container--dash'>
+
+              <div class="btn__dash">
+                <button class='btn__primary btn--dash btn--home'></button>
+                <p class="btn__dash-text">Start</p>
+              </div>
+
+              <div class="btn__dash">
+                <button class='btn__primary btn--dash btn--home'></button>
+                <p class="btn__dash-text">Stop</p>
+              </div>
+              
+              <div class="btn__dash">
+                <button class='btn__primary btn--dash btn--home btn--edit1'></button>
+                <p class="btn__dash-text">Emergency</p>
+              </div>
+              
+              <div class="btn__dash">
+                <button class='btn__primary btn--dash btn--home btn--edit2'></button>
+                <p class="btn__dash-text text-reset">Reset</p>
+              </div>
+
+              <div class="form-box">
+                  <div class="button-box">
+                    <div id="btn--switch"></div>
+                    <button type="button" class="toggle-btn sw--left btn__primary" >Man</button>
+                    <button type="button" class="toggle-btn sw--right btn__primary" >Auto</button>
+                  </div>
+            </div>
+              
             </div>
           </div>
         </div>
@@ -127,11 +150,26 @@
   </div>
 </div>
 
-<form method="GET" action="" name = 'form__cre-his'></form>
+<form method="POST" action="" name = 'form__cre-his'></form>
 
 <script src='/socket.io/socket.io.js'></script>
 <script>
   document.addEventListener('DOMContentLoaded', async function(){ 
+
+      // handle switch 
+      const btnSwitch = document.getElementById('btn--switch');
+      const btnSwleft = document.querySelector('.sw--left');
+      const btnSwright = document.querySelector('.sw--right');
+
+      btnSwleft.addEventListener('click',(e)=>{
+          btnSwitch.style.left = '0';
+      })
+      btnSwright.addEventListener('click',(e)=>{
+          btnSwitch.style.left = '50px';
+      })
+
+      
+
 
       const formNewHis=document.forms['form__cre-his'];
       const container = document.querySelector('.home__control');
@@ -160,14 +198,25 @@
           e.preventDefault();
           const btn = e.target.closest('.btn__primary'); 
           if (!btn) return;
-          const behavior = btn.textContent.trim();
+          let behavior = btn.textContent.trim();
+          if  (!behavior) behavior = btn.closest('.btn__dash').lastElementChild.textContent.trim();
+          behavior = behavior.toLowerCase();
+
           // send to sever -> mqtt
           socket.emit('client message', behavior );
-          // get creat history
-          
-          formNewHis.submit();
-          
+          // post creat history
 
-  })
-  }})
+          const mess = `Click ${behavior} from Web Client`;
+          axios.post('/history/store', {
+            behavior: mess
+          })
+          .then((res)=>{}
+          )
+          .catch(function (error) {
+            console.log(error);
+          });
+          //error reload page
+          //formNewHis.submit();
+      });
+      }});
 </script>

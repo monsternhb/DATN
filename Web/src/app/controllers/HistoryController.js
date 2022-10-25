@@ -10,6 +10,19 @@ class HistoryController {
         res.render('history', { histories: multiMongooseToObject(histories) });
       })
       .catch(next);
+  };
+   
+  // [POST] /history/store
+  store(req,res,next){
+    console.log('>>>>',req.body);
+    const newHis = new History(req.body);
+
+      newHis.save()
+      .then(() => {
+
+          res.redirect('/home');
+        })
+        .catch(err => res.send('Error:',err));
   }
 
 }

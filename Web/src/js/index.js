@@ -79,7 +79,7 @@ io.on('connection', socket => {
   console.log('a user connected');
   socket.on('client message', msg => {
     // pulish msg to mqtt topic = controlplc
-    client.publish('controlplc', msg, { qos: 0, retain: false }, error => {
+    client.publish('control_plc', msg, { qos: 0, retain: false }, error => {
       if (error) {
         console.error(error);
       }
