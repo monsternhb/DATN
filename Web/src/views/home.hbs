@@ -9,13 +9,19 @@
             <div class='mode__container'>
               <button class='btn__primary btn--hand btn--home'>Motor On</button>
               <button class='btn__primary btn--hand btn--home'>Motor Off</button>
-              <button class='btn__primary btn--hand btn--home'>Push</button>
-              <button class='btn__primary btn--hand btn--home'>Pull</button>
+              <button class='btn__primary btn--hand btn--home'>Push Out</button>
+              <button class='btn__primary btn--hand btn--home'>Pull Back</button>
+              <button class='btn__primary btn--hand btn--home'>Left Down</button>
+              <button class='btn__primary btn--hand btn--home'>Left Up</button>
+              <button class='btn__primary btn--hand btn--home'>Hold On</button>
+              <button class='btn__primary btn--hand btn--home'>Hold Off</button>
+              <button class='btn__primary btn--hand btn--home'>Go Out</button>
+              <button class='btn__primary btn--hand btn--home'>Go Back</button>
             </div>
           </div>
         </div>
       </div>
-
+        
       <!-- Dash board -->
       <div class='grid__column-2-5'>
         <div class='home__mode'>
@@ -116,7 +122,8 @@
               <i class='icon__total fa-solid fa-box-open'></i>
               <input
                 type='text'
-                class='total__setting'
+                class='total__setting '
+                id="total1"
                 placeholder='Number total'
               />
               <p class='current__count count-sp1'>0</p>
@@ -125,11 +132,14 @@
             <div class='grid__column-product'>
               <p class='text__total'>Total product 2</p>
               <i class='icon__total fa-solid fa-box-open'></i>
+
               <input
-                type='text'
-                class='total__setting'
-                placeholder='Number total'
-              />
+                  type='text'
+                  class='total__setting '
+                  id="total2"
+                  placeholder='Number total'
+                />
+              
               <p class='current__count count-sp2'>0</p>
             </div>
 
@@ -139,6 +149,7 @@
               <input
                 type='text'
                 class='total__setting'
+                id="total3"
                 placeholder='Number total'
               />
               <p class='current__count count-sp3'>0</p>
@@ -150,7 +161,7 @@
   </div>
 </div>
 
-<form method="POST" action="" name = 'form__cre-his'></form>
+
 
 <script src='/socket.io/socket.io.js'></script>
 <script>
@@ -164,6 +175,7 @@
       btnSwleft.addEventListener('click',(e)=>{
           btnSwitch.style.left = '0';
       })
+
       btnSwright.addEventListener('click',(e)=>{
           btnSwitch.style.left = '50px';
       })
@@ -173,16 +185,42 @@
 
       const formNewHis=document.forms['form__cre-his'];
       const container = document.querySelector('.home__control');
+      let input = document.querySelectorAll('.total__setting');
+      
+          input.forEach((inp) => inp.addEventListener('change', (e)=> {
+            // total1 -- total2 --total3
+            const publicName = inp.id;
+            const publicValue = inp.value;
+
+            // send to server -> mqtt
+            socket.emit('client message01', {publicName: publicName, publicValue: publicValue} );
+          }));
+  
+      
       // get role of user
       const role = await container.id;
       const socket = io();
 
       
-      // render from sever socket emit
-      socket.on('followplc', function(msg) {
+      // render number of current product from sever socket emit
+      //count sp1
+      socket.on('quantityS1', function(msg) {
         const countSp1 = document.querySelector('.count-sp1');
         countSp1.textContent = msg;
       });
+
+      //count sp2
+      socket.on('quantityS2', function(msg) {
+        const countSp2 = document.querySelector('.count-sp2');
+        countSp2.textContent = msg;
+      });
+
+      //count sp3
+      socket.on('quantityS3', function(msg) {
+        const countSp3 = document.querySelector('.count-sp3');
+        countSp3.textContent = msg;
+      });
+
       
       if (role === 'viewer'){
         // config viewer
@@ -202,8 +240,10 @@
           if  (!behavior) behavior = btn.closest('.btn__dash').lastElementChild.textContent.trim();
           behavior = behavior.toLowerCase();
 
-          // send to sever -> mqtt
+          console.log(behavior);
+          // send to server -> mqtt
           socket.emit('client message', behavior );
+          
           // post creat history
 
           const mess = `Click ${behavior} from Web Client`;
@@ -215,8 +255,6 @@
           .catch(function (error) {
             console.log(error);
           });
-          //error reload page
-          //formNewHis.submit();
       });
       }});
 </script>

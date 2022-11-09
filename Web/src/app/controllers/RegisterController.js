@@ -13,39 +13,36 @@ class RegisterController {
       .catch(next);
   }
 
-  // [POST] account
-  store(req, res, next) {
-    console.log(req.body);
-    const userName = req.body.user_name;
-    const passWord = req.body.pass_word;
-    const confirm = req.body.confirm;
+  // [POST] /register/store
+  async store(req, res, next) {
+    try{
+      //get data register
+      const userName = req.body.user_name;
+      const passWord = req.body.pass_word;
+      const confirm = req.body.confirm;
+      console.log(req.body);
+      //validate
+      if (confirm !== passWord) throw new Error('Wrong confirm password'); 
+      if (!userName || !passWord) throw new Error('May be you miss user name of pass word');     
 
-    if (confirm !== passWord) {res.json('Wrong confirm password'); }
+      // check DB
+      const acc = await Register.find({ user_name: userName });
+      // const hasRegistered = acc[0]._doc; 
+      // console.log(hasRegistered);
+      console.log(acc);
+      if(acc.length !== 0)  throw new Error('User name has been used');
+      
+      //save account to DB
+      const newAcc = new Register(req.body);
+      await newAcc.save();
+      
+      res.redirect('/register');
+      console.log('save account to DB successful');
 
-    Register.find({ user_name: userName })
-      .then(acc => {
-          {acc: mongooseToObject(acc)}; 
-          console.log('acc',acc);   
-          if (acc) console.log('Account has been used!!');
-          throw 'Account has been used!!';
-        }
-      )
-      .catch(next);
-
-    if (!userName || !passWord)
-      {
-        console.log('May be you miss user name of pass word');
-        throw 'May be you miss user name of pass word';
-      }
-
-    const newAcc = new Register(req.body);
-    newAcc
-      .save()
-      .then(() => {
-        console.log('save to DB successful');
-        res.redirect('../register');
-      })
-      .catch(err => res.send('Error:',err));
+    }catch(err){
+      console.log(err.message);
+      res.json(err.message);
+    }
   }
 }
 

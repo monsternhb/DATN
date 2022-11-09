@@ -47,6 +47,91 @@
           <span class='table__controller'>{{this.behavior}}</span>
         </div>
       {{/each}}
+
     </div>
   </div>
+
+  {{!-- Pagination --}}
+  <div class="current__page" id={{page}}></div>
+  <ul class="pagination__list home__pagination" id={{pages}} >
+                  
+
+                  
+
+                
+  </ul>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async function(){ 
+
+    //handle pagination
+    //get number of page and page current
+    let numberPages = Number(document.querySelector(".pagination__list").id);
+    let curPage = Number(document.querySelector(".current__page").id);
+    
+    //render pagination button with href relative
+    const paginationContainer = document.querySelector(".pagination__list");
+
+    function addPagi(html){
+      paginationContainer.insertAdjacentHTML('beforeEnd',html);
+    }
+
+
+    let html = `<li class="pagination__item continue__item">
+                    <a href="" class="pagination__link"
+                      ><i class="fas fa-angle-left"></i
+                    ></a>
+                  </li>`
+    addPagi(html);
+
+
+    let flagPagination = true;
+    
+    for(let i = 1; i <= numberPages; i++){
+      if ((i>2 && i < (numberPages-2)) && flagPagination){
+         html = `<li class="pagination__item">
+                      <a href="/history?page=..." class="pagination__link">...</a>
+                    </li>`
+        addPagi(html);
+        flagPagination = false;
+      } 
+      else{
+        if (i<=2 || i >= (numberPages-2)){
+           html = `<li class="pagination__item item-number" data-page = ${i}>
+                          <a href="/history?page=${i}" class="pagination__link">${i}</a>
+                        </li>`
+          addPagi(html);
+        }
+        } 
+    }
+
+    html = `<li class="pagination__item continue__item">
+                    <a href="" class="pagination__link"
+                      ><i class="fas fa-angle-right"></i
+                    ></a>
+                  </li>`
+    addPagi(html); 
+
+
+
+    // click > -> curPage++ and so on
+   
+   // active page 
+   const whereActivePage = document.querySelectorAll('.item-number');
+   
+   whereActivePage.forEach(pag => {
+    pag.classList.remove('pagination__item--active');
+    const pageNum = Number(pag.dataset.page);
+    if( pageNum === curPage ){
+      pag.classList.add('pagination__item--active');
+    }
+
+   })
+
+
+
+
+  })
+
+</script>

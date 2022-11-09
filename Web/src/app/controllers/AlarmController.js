@@ -1,11 +1,10 @@
 class AlarmController {
-  // [GET] / history
+  // [GET] / alarm
   index(req, res) {
     res.render("alarm");
   }
 
-  // [GET] / history / : slug
-  show(req, res) {}
+
 }
 
 module.exports = new AlarmController();

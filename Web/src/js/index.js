@@ -70,21 +70,39 @@ const client = mqtt.connect(connectUrl, {
   clientId,
   clean: true,
   connectTimeout: 4000,
-
   reconnectPeriod: 1000,
 });
 
 // socket connection
 io.on('connection', socket => {
   console.log('a user connected');
+
+  // receive msg control plc from client
   socket.on('client message', msg => {
     // pulish msg to mqtt topic = controlplc
-    client.publish('control_plc', msg, { qos: 0, retain: false }, error => {
+    client.publish('controlplc', msg, { qos: 0, retain: false }, error => {
       if (error) {
         console.error(error);
       }
     });
+
     console.log('Click ' + msg + ' from Web client');
+  });
+
+  // receive msg total product from client
+  socket.on('client message01', msg => {
+    //pulish msg to mqtt topic = totalX
+    client.publish(
+      msg.publicName,
+      msg.publicValue,
+      { qos: 0, retain: false },
+      error => {
+        if (error) {
+          console.error(error);
+        }
+      }
+    );
+    console.log(msg.publicName, msg.publicValue);
   });
 });
 
@@ -93,9 +111,11 @@ client.on('connect', () => {
 });
 
 // subcribe topic followplc
-const topic = 'followplc';
-client.subscribe(topic, () => {
-  console.log(`Subscribe to topic '${topic}'`);
+const topicSub = ['quantityS1', 'quantityS2', 'quantityS3'];
+topicSub.forEach(topic => {
+  client.subscribe(topic, () => {
+    console.log(`Subscribe to topic '${topic}'`);
+  });
 });
 
 // receive msg from topic follow plc
