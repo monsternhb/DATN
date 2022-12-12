@@ -2,11 +2,10 @@ const { multiMongooseToObject } = require('../../helpers/mongooseHelper');
 const History = require('../models/History');
 
 class HistoryController {
-  // [GET] / history
+  // [GET] / history? page == {page}
   index(req, res, next) {
     let perPage = 8;
     let page = Math.max(0, req.query.page);
-    console.log('>>>>>>', page);
     // Get data from database and render it
     History.find({})
       .limit(perPage)
@@ -25,15 +24,22 @@ class HistoryController {
   }
 
   // [POST] /history/store
-  store(req, res, next) {
-    const newHis = new History(req.body);
+  async store(req, res, next) {
+    try{
+     const newHis = new History( {behavior: req.body.behavior});
+     newHis.save();
 
-    newHis
-      .save()
-      .then(() => {
-        res.redirect('/home');
-      })
-      .catch(err => res.send('Error:', err));
+
+
+    //  newHis.behavior = req.body.behavior;
+      
+    
+
+      // const newHis = await History.create([{ behavior: 'Jean-Luc Picard' }]);
+      // console.log(newHis,'aaaa');
+    } catch (err){
+      res.send(err.message);
+    }
   }
 }
 

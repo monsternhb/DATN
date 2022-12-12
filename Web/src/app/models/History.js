@@ -1,14 +1,18 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const History = new Schema({
-  time: { type: Date, default: Date.now },
-  subject_name: { type: String },
-  alarm: { type: String },
-  sum_high: String,
-  sum_normal: String,
-  sum_short: String,
+const HistorySche = new Schema({
+  num_pros: Array,
   behavior: String,
+  time: { type: Date, default: Date.now(), select: false },
+  // device_id: { type: String, required: [true, 'A history must have its device id'],
+  //   unique: true,
+  //   trim: true,    
+  // }
 });
 
-module.exports = mongoose.model('History', History);
+const History = mongoose.model('History', HistorySche);
+
+
+
+module.exports = History;

@@ -9,6 +9,7 @@ router.post('/store', registerController.store);
 router.get(
   '/',
   middleWare.checkLogin,
+  middleWare.checkManager,
   middleWare.checkAdmin,
   registerController.index
 );

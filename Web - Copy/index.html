@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="src/assets/fonts/fontawesome-free-6.2.0-web/css/all.css"
+    />
+    <link rel="stylesheet" href="./src/assets/css/base.css" />
+    <link rel="stylesheet" href="./src/assets/css/main.css" />
+    <title>DATN</title>
+  </head>
+  <body>
+    <div class="modal hidden">
+      <div class="modal__overlay"></div>
+      <div class="modal__body">
+        <div class="modal__login">
+          <div class="login__header">Login</div>
+          <div class="login__group">
+            <input type="text" class="login__user" placeholder="User name" />
+            <input type="text" class="login__pass" placeholder="Pass word" />
+          </div>
+          <div class="login__btn">
+            <button class="btn__login">Login</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="homepage">
+      <div class="header">
+        <div class="grid">
+          <div class="header__navbar">
+            <div class="header__content">IOT SOLUTIONS</div>
+            <div class="header__tittle">Welcome to my project</div>
+            <button class="btn--log-out">Log out</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Container -->
+      <div class="container">
+        <div class="grid">
+          <div class="grid__row">
+            <!-- Header nav -->
+            <div class="grid__column-2">
+              <div class="nav__header">
+                <div
+                  class="nav__logo-img"
+                  style="
+                    background-image: url(data:image/png;base64,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);
+                  "
+                ></div>
+                <div class="nav__heading">height classification</div>
+                <ul class="nav__list">
+                  <li class="nav__item">
+                    <i class="nav__icon fa-solid fa-house"></i>Home page
+                  </li>
+                  <li class="nav__item">
+                    <i class="nav__icon fa-solid fa-coins"></i>History
+                  </li>
+                  <li class="nav__item">
+                    <i class="nav__icon fa-solid fa-bell"></i>Alarm
+                  </li>
+                  <li class="nav__item">
+                    <i class="nav__icon fa-solid fa-address-card"></i>Register
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Home page -->
+            <div class="home__page grid__column-10">
+              <div class="home__control">
+                <div class="grid__row">
+                  <!-- Hand mode -->
+                  <div class="grid__column-2-5">
+                    <div class="home__mode">
+                      <div class="home__mode-hand-mode">
+                        <div class="mode__tittle">Hand mode</div>
+                        <div class="mode__container">
+                          <button class="btn__primary btn--hand">
+                            Motor On
+                          </button>
+                          <button class="btn__primary btn--hand">
+                            Motor Off
+                          </button>
+                          <button class="btn__primary btn--hand">Push</button>
+                          <button class="btn__primary btn--hand">Pull</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Dash board -->
+                  <div class="grid__column-2-5">
+                    <div class="home__mode">
+                      <div class="home__mode-dashboard">
+                        <div class="mode__tittle">Dashboard</div>
+                        <div class="mode__container">
+                          <button class="btn__primary btn--dash">Start</button>
+                          <button class="btn__primary btn--dash">Stop</button>
+                          <button class="btn__primary btn--dash">Reset</button>
+                          <button class="btn__primary btn--dash">
+                            Emergency
+                          </button>
+                          <button class="btn__primary btn--dash">Switch</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Type product -->
+                  <div class="grid__column-2-5">
+                    <div class="home__mode">
+                      <div class="home__mode-type-product">
+                        <div class="mode__tittle">Type of Product</div>
+                        <div class="home__type-product">
+                          <i class="icon__type fa-solid fa-lightbulb"></i> Type
+                          1
+                        </div>
+                        <div class="home__type-product">
+                          <i class="icon__type fa-solid fa-lightbulb"></i> Type
+                          2
+                        </div>
+                        <div class="home__type-product">
+                          <i class="icon__type fa-solid fa-lightbulb"></i> Type
+                          3
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--Home notification-->
+                  <div class="grid__column-2-4">
+                    <div class="home__mode">
+                      <div class="home__mode-noty-light">
+                        <div class="noty">
+                          <i class="noty__icon fa-solid fa-circle"></i>
+                          <p class="noty__text">Man</p>
+                        </div>
+                        <div class="noty">
+                          <i class="noty__icon fa-solid fa-circle"></i>
+                          <p class="noty__text">Auto</p>
+                        </div>
+
+                        <div class="noty">
+                          <i class="noty__icon fa-solid fa-circle"></i>
+                          <p class="noty__text">Run</p>
+                        </div>
+
+                        <div class="noty">
+                          <i class="noty__icon fa-solid fa-circle"></i>
+                          <p class="noty__text">Alarm</p>
+                        </div>
+                      </div>
+                      <div class="home__mode-noty-desc">
+                        <div class="mode__tittle">Height notifications</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="grid__column-2-4">
+                    <div class="home__mode">
+                      <div class="mode__tittle">Total products</div>
+                      <!-- Each product count -->
+                      <div class="grid__row">
+                        <div class="grid__column-product">
+                          <p class="text__total">Total product 1</p>
+                          <i class="icon__total fa-solid fa-box-open"></i>
+                          <input
+                            type="text"
+                            class="total__setting"
+                            placeholder="Number total"
+                          />
+                          <p class="current__count">0</p>
+                        </div>
+
+                        <div class="grid__column-product">
+                          <p class="text__total">Total product 2</p>
+                          <i class="icon__total fa-solid fa-box-open"></i>
+                          <input
+                            type="text"
+                            class="total__setting"
+                            placeholder="Number total"
+                          />
+                          <p class="current__count">0</p>
+                        </div>
+
+                        <div class="grid__column-product">
+                          <p class="text__total">Total product 3</p>
+                          <i class="icon__total fa-solid fa-box-open"></i>
+                          <input
+                            type="text"
+                            class="total__setting"
+                            placeholder="Number total"
+                          />
+                          <p class="current__count">0</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- History page -->
+            <div class="history__page grid__column-10 hidden">
+              <div class="history__control">
+                <div class="grid__row">
+                  <div class="history__btn">
+                    <button class="btn__primary btn__history">
+                      view controller
+                    </button>
+                    <button class="btn__primary btn__history">
+                      view total products
+                    </button>
+                    <button class="btn__primary btn__history">Export</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="history__option">
+                <div class="grid__row">
+                  <form action="" class="form-option">
+                    <span class="option-text">Date from</span>
+                    <input
+                      type="text"
+                      class="date-from"
+                      placeholder="dd/mm/yy"
+                    />
+                    <span class="option-text">Date to</span>
+                    <input
+                      type="text"
+                      class="date-from"
+                      placeholder="dd/mm/yy"
+                    />
+                    <input
+                      type="submit"
+                      class="btn__date-from btn__primary"
+                      value="Search"
+                    />
+                  </form>
+                </div>
+              </div>
+
+              <div class="history__table">
+                <div class="grid__row">
+                  <!-- table tittle -->
+                  <div class="table table__header">
+                    <span class="table__id">ID</span>
+                    <span class="table__time">Time</span>
+                    <span class="table__controller">Controller</span>
+                  </div>
+
+                  <!-- Table data -->
+                  <div class="table table__data">
+                    <span class="table__id">13203091309139103ccccc</span>
+                    <span class="table__time">12/07/2021</span>
+                    <span class="table__controller"
+                      >Click button from web sever</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Alarm page -->
+            <div class="alarm__page grid__column-10 hidden">
+              <div class="alarm__control">
+                <div class="grid__row">
+                  <div class="alarm__btn">
+                    <button class="btn__primary btn__alarm">
+                      view controller
+                    </button>
+                    <button class="btn__primary btn__alarm">
+                      view total products
+                    </button>
+                    <button class="btn__primary btn__alarm">Export</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="alarm__option">
+                <div class="grid__row">
+                  <form action="" class="alarm__form-option">
+                    <span class="alarm__option-text">Date from</span>
+                    <input
+                      type="text"
+                      class="alarm__date-from"
+                      placeholder="dd/mm/yy"
+                    />
+                    <span class="alarm__option-text">Date to</span>
+                    <input
+                      type="text"
+                      class="alarm__date-from"
+                      placeholder="dd/mm/yy"
+                    />
+                    <input
+                      type="submit"
+                      class="btn-alarm__date-from btn__primary"
+                      value="Search"
+                    />
+                  </form>
+                </div>
+              </div>
+
+              <div class="alarm__table">
+                <div class="grid__row">
+                  <!-- table tittle -->
+                  <div class="table table__header">
+                    <span class="table__id">ID</span>
+                    <span class="table__time">Time</span>
+                    <span class="table__subject">Subject</span>
+                    <span class="table__alarm">Alarm</span>
+                  </div>
+
+                  <!-- Table data -->
+                  <div class="table table__data">
+                    <span class="table__id">13203091309139103ccccc</span>
+                    <span class="table__time">12/07/2021</span>
+                    <span class="table__subject">Conveyer</span>
+                    <span class="table__alarm">No product</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Register page -->
+            <div class="reg__page grid__column-10 hidden">
+              <div class="reg_control">
+                <div class="grid__row">
+                  <div class="grid__column-2 form-reg">
+                    <p class="welcome">Create Account</p>
+                    <form class="login">
+                      <input
+                        type="text"
+                        placeholder="user name"
+                        class="login__input login__input--user"
+                      />
+                      <!-- In practice, use type="password" -->
+                      <input
+                        type="password"
+                        placeholder="PIN"
+                        maxlength="4"
+                        class="login__input login__input--pin"
+                      />
+                      <input
+                        type="password"
+                        placeholder="confirm PIN"
+                        maxlength="4"
+                        class="login__input login__input--pin"
+                      />
+                      <button class="login__btn">&rarr;</button>
+                    </form>
+                  </div>
+
+                  <div class="grid__column-2-3">
+                    <div class="reg__table">
+                      <div class="grid__row">
+                        <!-- table tittle -->
+                        <div class="table table__header">
+                          <span class="table__id">ID</span>
+                          <span class="table__name">Name</span>
+                          <span class="table__role">Role</span>
+                        </div>
+
+                        <!-- Table data -->
+                        <div class="table table__data">
+                          <span class="table__id">13203091309139103ccccc</span>
+                          <span class="table__name">admin</span>
+                          <span class="table__role">user</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,11 +1,12 @@
-const path = require('path');
 const express = require('express');
+const app = express();
+const path = require('path');
 const hbs = require('express-handlebars');
 const morgan = require('morgan');
-const app = express();
 const port = 3000;
 const methodOverride = require('method-override');
-const publicPath = path.join(__dirname, '../assets'); // set static folder when they try to look up
+// set static folder when they try to look up
+const publicPath = path.join(__dirname, '../assets'); 
 const route = require('../routes');
 const cookieParser = require('cookie-parser');
 const http = require('http');

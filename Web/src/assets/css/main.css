@@ -13,14 +13,15 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9a9e7df9-f956-49d0-ae74-9b2da9d3b05e/d5iwai9-d8cacb8e-cb5f-4067-94c8-eaa1c44e484c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzlhOWU3ZGY5LWY5NTYtNDlkMC1hZTc0LTliMmRhOWQzYjA1ZVwvZDVpd2FpOS1kOGNhY2I4ZS1jYjVmLTQwNjctOTRjOC1lYWExYzQ0ZTQ4NGMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.o9RxoGFwpXoxP-fcuUJQjKBD2y1Yz7ROJKbxj-B16Y8);
+  
+  background-image: url(https://thethaovanhoa.mediacdn.vn/372676912336973824/2022/11/17/anh-bai-chinh-trang-10-16687011010261532840668.jpg);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: rgba(0, 0, 0, 0.2);
 }
 
 .modal__body {
-  background-color: rgba(133, 116, 116, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
   position: relative;
   z-index: 1;
   margin: auto;
@@ -41,6 +42,7 @@
   text-align: center;
   line-height: 40px;
   transform: uppercase;
+  color: #333;
 }
 
 .login__group {
@@ -57,7 +59,7 @@
   font-size: 1.6rem;
   background-color: rgba(133, 116, 116, 0.5);
   color: #333;
-  border-color: var(--main-color);
+
 }
 
 .login__pass {
@@ -68,7 +70,7 @@
   font-size: 1.6rem;
   background-color: rgba(133, 116, 116, 0.5);
   color: var(--text-color);
-  border-color: var(--main-color);
+
 }
 
 .login__btn {
@@ -78,7 +80,7 @@
 
 .btn__login {
   margin-bottom: 8px;
-  background-color: rgba(133, 116, 116, 0.5);
+  background-color:   rgba(133, 116, 116, 0.8);
   border: none;
   padding: 14px 30px;
   border-radius: 30px;
@@ -94,7 +96,7 @@
 }
 
 .btn__login:hover {
-  opacity: 0.6;
+  opacity: 0.8;
   color: #333;
 }
 
@@ -139,7 +141,7 @@
 
 .nav__header {
   background-color: #e9a7a0;
-  height: 100%;
+  height: 506px;
 }
 .nav__logo-img {
   background-color: #e9a7a0;
@@ -323,6 +325,13 @@
   color: var(--main-color);
 }
 
+.home__mode-type-product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 180px;
+}
 .home__type-product {
   font-size: 1.6rem;
   font-weight: 400;
@@ -543,7 +552,7 @@
 }
 
 .home__pagination {
-  padding: 30px 0 20px 0;
+  padding: 10px 0 20px 0;
 }
 
 .pagination__list {
@@ -583,4 +592,14 @@
   height: var(--height);
   line-height: var(--height);
   text-align: center;
+}
+
+
+.hidden--link-page{
+  position: relative;
+  display: none;
+}
+
+.active {
+  display: block;
 }

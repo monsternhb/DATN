@@ -1,5 +1,5 @@
 <div class='home__page grid__column-10'>
-  <div class='home__control' id ={{role}}>
+  <div class='home__control' id={{role}}>
     <div class='grid__row'>
       <!-- Hand mode -->
       <div class='grid__column-2-5'>
@@ -21,7 +21,7 @@
           </div>
         </div>
       </div>
-        
+
       <!-- Dash board -->
       <div class='grid__column-2-5'>
         <div class='home__mode'>
@@ -29,34 +29,44 @@
             <div class='mode__tittle'>Dashboard</div>
             <div class='mode__container container--dash'>
 
-              <div class="btn__dash">
+              <div class='btn__dash'>
                 <button class='btn__primary btn--dash btn--home'></button>
-                <p class="btn__dash-text">Start</p>
+                <p class='btn__dash-text'>Start</p>
               </div>
 
-              <div class="btn__dash">
+              <div class='btn__dash'>
                 <button class='btn__primary btn--dash btn--home'></button>
-                <p class="btn__dash-text">Stop</p>
-              </div>
-              
-              <div class="btn__dash">
-                <button class='btn__primary btn--dash btn--home btn--edit1'></button>
-                <p class="btn__dash-text">Emergency</p>
-              </div>
-              
-              <div class="btn__dash">
-                <button class='btn__primary btn--dash btn--home btn--edit2'></button>
-                <p class="btn__dash-text text-reset">Reset</p>
+                <p class='btn__dash-text'>Stop</p>
               </div>
 
-              <div class="form-box">
-                  <div class="button-box">
-                    <div id="btn--switch"></div>
-                    <button type="button" class="toggle-btn sw--left btn__primary" >Man</button>
-                    <button type="button" class="toggle-btn sw--right btn__primary" >Auto</button>
-                  </div>
-            </div>
-              
+              <div class='btn__dash'>
+                <button
+                  class='btn__primary btn--dash btn--home btn--edit1'
+                ></button>
+                <p class='btn__dash-text'>Emergency</p>
+              </div>
+
+              <div class='btn__dash'>
+                <button
+                  class='btn__primary btn--dash btn--home btn--edit2'
+                ></button>
+                <p class='btn__dash-text text-reset'>Reset</p>
+              </div>
+
+              <div class='form-box'>
+                <div class='button-box'>
+                  <div id='btn--switch'></div>
+                  <button
+                    type='button'
+                    class='toggle-btn sw--left btn__primary'
+                  >Man</button>
+                  <button
+                    type='button'
+                    class='toggle-btn sw--right btn__primary'
+                  >Auto</button>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -65,8 +75,8 @@
       <!-- Type product -->
       <div class='grid__column-2-5'>
         <div class='home__mode'>
+          <div class='mode__tittle'>Type of Product</div>
           <div class='home__mode-type-product'>
-            <div class='mode__tittle'>Type of Product</div>
             <div class='home__type-product'>
               <i class='icon__type fa-solid fa-lightbulb'></i>
               Type 1
@@ -122,8 +132,8 @@
               <i class='icon__total fa-solid fa-box-open'></i>
               <input
                 type='text'
-                class='total__setting '
-                id="total1"
+                class='total__setting'
+                id='total1'
                 placeholder='Number total'
               />
               <p class='current__count count-sp1'>0</p>
@@ -134,12 +144,12 @@
               <i class='icon__total fa-solid fa-box-open'></i>
 
               <input
-                  type='text'
-                  class='total__setting '
-                  id="total2"
-                  placeholder='Number total'
-                />
-              
+                type='text'
+                class='total__setting'
+                id='total2'
+                placeholder='Number total'
+              />
+
               <p class='current__count count-sp2'>0</p>
             </div>
 
@@ -149,7 +159,7 @@
               <input
                 type='text'
                 class='total__setting'
-                id="total3"
+                id='total3'
                 placeholder='Number total'
               />
               <p class='current__count count-sp3'>0</p>
@@ -161,100 +171,81 @@
   </div>
 </div>
 
-
-
 <script src='/socket.io/socket.io.js'></script>
 <script>
   document.addEventListener('DOMContentLoaded', async function(){ 
-
-      // handle switch 
-      const btnSwitch = document.getElementById('btn--switch');
-      const btnSwleft = document.querySelector('.sw--left');
-      const btnSwright = document.querySelector('.sw--right');
-
-      btnSwleft.addEventListener('click',(e)=>{
-          btnSwitch.style.left = '0';
-      })
-
-      btnSwright.addEventListener('click',(e)=>{
-          btnSwitch.style.left = '50px';
-      })
-
-      
-
-
-      const formNewHis=document.forms['form__cre-his'];
-      const container = document.querySelector('.home__control');
-      let input = document.querySelectorAll('.total__setting');
-      
-          input.forEach((inp) => inp.addEventListener('change', (e)=> {
-            // total1 -- total2 --total3
-            const publicName = inp.id;
-            const publicValue = inp.value;
-
-            // send to server -> mqtt
-            socket.emit('client message01', {publicName: publicName, publicValue: publicValue} );
-          }));
   
+  // handle  switch 
+  const btnSwitch = document.getElementById('btn--switch'); 
+  const btnSwleft = document.querySelector('.sw--left'); 
+  const btnSwright = document.querySelector('.sw--right');
+
+  btnSwleft.addEventListener('click',(e)=>{ btnSwitch.style.left = '0'; })
+  btnSwright.addEventListener('click',(e)=>{ btnSwitch.style.left = '50px'; })
+
+  const formNewHis=document.forms['form__cre-his']; 
+  const container =document.querySelector('.home__control'); 
+  let input = document.querySelectorAll('.total__setting'); 
+  
+  input.forEach((inp) =>inp.addEventListener('change', (e)=> { 
+  // total1 -- total2 --total3 
+  const publicName = inp.id; 
+  const publicValue = inp.value; 
+  // send to server -> mqtt
+
+  socket.emit('client message01', 
+    {publicName: publicName, publicValue: publicValue} ); })); 
+    
+  // get role of user 
+  
+  const role = await container.id;
+  const socket = io(); 
+  // render number of current product from sever socket emit //count sp1 
+  
+  socket.on('quantityS1', function(msg) { 
+    const countSp1 = document.querySelector('.count-sp1'); countSp1.textContent = msg; }); 
+  
+  //count sp2 
+  
+  socket.on('quantityS2', function(msg) { 
+    const countSp2 = document.querySelector('.count-sp2'); 
+    countSp2.textContent = msg; }); 
+    
+  //count sp3 
+  
+  socket.on('quantityS3', function(msg) { const countSp3 =
+  document.querySelector('.count-sp3'); countSp3.textContent = msg; }); 
+  
+  if (role=== 'viewer'){ 
+    // config viewer 
+    
+    const btns = document.querySelectorAll('.btn__primary'); 
+    
+    btns.forEach(btn => { 
+      btn.classList.remove('btn--home'); 
+      btn.classList.add('btn--disable'); })}
+
+  else{ 
+    // handle button 
+    
+    container.addEventListener('click',function(e){
+      e.preventDefault(); 
+      const btn = e.target.closest('.btn__primary'); 
+
+      if (!btn) return; 
+      let behavior = btn.textContent.trim(); 
+      if (!behavior) behavior = btn.closest('.btn__dash').lastElementChild.textContent.trim(); 
+      behavior = behavior.toLowerCase(); 
       
-      // get role of user
-      const role = await container.id;
-      const socket = io();
-
+      console.log(behavior); 
       
-      // render number of current product from sever socket emit
-      //count sp1
-      socket.on('quantityS1', function(msg) {
-        const countSp1 = document.querySelector('.count-sp1');
-        countSp1.textContent = msg;
-      });
-
-      //count sp2
-      socket.on('quantityS2', function(msg) {
-        const countSp2 = document.querySelector('.count-sp2');
-        countSp2.textContent = msg;
-      });
-
-      //count sp3
-      socket.on('quantityS3', function(msg) {
-        const countSp3 = document.querySelector('.count-sp3');
-        countSp3.textContent = msg;
-      });
-
+      // send to server -> mqtt
+      socket.emit('client message', behavior ); 
+      // post creat history 
+      const mess =  `Click ${behavior} from Web Client`; 
       
-      if (role === 'viewer'){
-        // config viewer
-          const btns = document.querySelectorAll('.btn__primary');
-          btns.forEach(btn => {
-            btn.classList.remove('btn--home');
-            btn.classList.add('btn--disable');
-          })
-      }
-      else{
-      // handle button
-      container.addEventListener('click',function(e){ 
-          e.preventDefault();
-          const btn = e.target.closest('.btn__primary'); 
-          if (!btn) return;
-          let behavior = btn.textContent.trim();
-          if  (!behavior) behavior = btn.closest('.btn__dash').lastElementChild.textContent.trim();
-          behavior = behavior.toLowerCase();
-
-          console.log(behavior);
-          // send to server -> mqtt
-          socket.emit('client message', behavior );
-          
-          // post creat history
-
-          const mess = `Click ${behavior} from Web Client`;
-          axios.post('/history/store', {
-            behavior: mess
-          })
-          .then((res)=>{}
-          )
-          .catch(function (error) {
-            console.log(error);
-          });
-      });
-      }});
+      axios.post('/history/store', { behavior: mess}) 
+      .then((res)=>{} )
+      .catch(function (error) { console.log(error); });
+  }); }});
 </script>

@@ -17,9 +17,12 @@ class LoginController {
 
       const acc = await Register.findOne({
         user_name: userName,
-        pass_word: passWord,
+        pass: passWord,
       });
-      if (!acc) throw new Error('Fail when login');
+
+      if (!acc) throw new Error('Incorrect username.');
+
+      // if(!acc)   return done(null, false, { message: 'Incorrect username.' });
 
       console.log(acc, 'Login success!!');
       let token = jwt.sign({ _id: acc._id }, 'pass');
@@ -36,7 +39,8 @@ class LoginController {
       res.cookie('token', data.token, 2);
       res.redirect('../home');
     } catch (err) {
-      res.json('PLEASE LOGIN AGAIN!!');
+      console.log(err);
+      res.json(err.message);
     }
   }
 }

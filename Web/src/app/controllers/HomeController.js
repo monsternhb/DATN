@@ -18,7 +18,7 @@ class HomeController {
   // [GET] / home /:slug /create
   async createHistory(req, res, next) {
     const newBehavior = 'Click ' + req.params.slug + ' from Web client';
-    console.log(newBehavior);
+    console.log(newBehavior,'aaaaa');
     //creat new history when click on web client
     await History.create({ behavior: newBehavior })
       .then(data => {

@@ -27,7 +27,7 @@ class Middleware {
 
   checkViewer(req, res, next) {
     const role = req.data._doc.role;
-    if (role === 'viewer' || role === 'operator' || role === 'admin') {
+    if (role === 'viewer' || role === 'operator' || role === 'manager' || role === 'admin') {
       req.data = req.data;
       next();
     } else {
@@ -37,7 +37,15 @@ class Middleware {
 
   checkOperator(req, res, next) {
     const role = req.data._doc.role;
-    if (role === 'operator' || role === 'admin') next();
+    if (role === 'operator' || role === 'manager' || role === 'admin') next();
+    else {
+      res.json('NOT PERMISSION!!!');
+    }
+  }
+
+  checkManager(req, res, next) {
+    const role = req.data._doc.role;
+    if (role === 'manager'|| role === 'admin') next();
     else {
       res.json('NOT PERMISSION!!!');
     }

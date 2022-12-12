@@ -4,11 +4,13 @@ const { mongooseToObject } = require('../../helpers/mongooseHelper');
 const Register = require('../models/Register');
 
 class RegisterController {
+
   // [GET] / register
   index(req, res, next) {
+    const role = req.data._doc.role;
     Register.find({})
       .then(registers => {
-        res.render('register', { registers: multiMongooseToObject(registers) });
+        res.render('register', { registers: multiMongooseToObject(registers), role});
       })
       .catch(next);
   }
@@ -20,10 +22,10 @@ class RegisterController {
       const userName = req.body.user_name;
       const passWord = req.body.pass_word;
       const confirm = req.body.confirm;
-      console.log(req.body);
+      
       //validate
       if (confirm !== passWord) throw new Error('Wrong confirm password'); 
-      if (!userName || !passWord) throw new Error('May be you miss user name of pass word');     
+      if (!userName || !passWord) throw new Error('May be you miss user name or pass word');     
 
       // check DB
       const acc = await Register.find({ user_name: userName });
@@ -33,12 +35,15 @@ class RegisterController {
       if(acc.length !== 0)  throw new Error('User name has been used');
       
       //save account to DB
-      const newAcc = new Register(req.body);
-      await newAcc.save();
+      // const newAcc = new Register(req.body);
+      // await newAcc.save();
+
+      const newAcc = await Register.create(req.body);
+      
       
       res.redirect('/register');
       console.log('save account to DB successful');
-
+      
     }catch(err){
       console.log(err.message);
       res.json(err.message);
