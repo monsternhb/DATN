@@ -19,9 +19,12 @@ class Middleware {
       if (!role) return res.redirect('/');
 
       req.data = accArr[0];
+      //send user to client
+      req.user = req.data.id;
+
       next();
     } catch (err) {
-      res.json('You need to login before');
+      res.json(err.message);
     }
   }
 

@@ -8,6 +8,42 @@ const Device = new Schema({
   { type: String, required: [true, 'A Device must have its device ip address'],
     unique: true,
     trim: true,},
-});
+
+  company: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Company'
+      }
+  ],
+
+  // histories - alarms
+  },
+  {
+    toJSON: {virtuals: true},
+    toObject: {virtuals: true}
+  });
 
 module.exports = mongoose.model('Device', Device);
+//QUERY MIDDLEWARE
+Device.pre(/^find/, function(next){
+  this.populate({
+    path:'company',
+    select: 'name'
+  })
+})
+
+// Virtual populate --- when have 1 device - not all
+// get all history of the device
+Device.virtual('histories',{
+  ref:'History',
+  foreignField: 'device',
+  localField: '_id'
+})
+
+Device.virtual('alarms',{
+  ref:'Alarm',
+  foreignField: 'device',
+  localField: '_id'
+})
+
+// go to controller "find by iD. populate('alarms')"

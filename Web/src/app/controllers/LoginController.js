@@ -31,12 +31,15 @@ class LoginController {
         message: 'Login success',
         token: token,
       };
+    
 
       if (data.message !== 'Login success')
         throw new Error('Fail login message');
 
       // save cookies
       res.cookie('token', data.token, 2);
+      
+
       res.redirect('../home');
     } catch (err) {
       console.log(err);

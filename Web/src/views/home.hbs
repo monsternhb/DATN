@@ -244,8 +244,8 @@
       // post creat history 
       const mess =  `Click ${behavior} from Web Client`; 
       
-      axios.post('/history/store', { behavior: mess}) 
+      axios.post('/history/device/123456', { behavior: mess}) 
       .then((res)=>{} )
-      .catch(function (error) { console.log(error); });
+      .catch(function (error) { console.log(error.message); });
   }); }});
 </script>

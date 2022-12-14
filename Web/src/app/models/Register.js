@@ -26,8 +26,21 @@ const Register= new Schema({
     },
     default: 'viewer',
   },
-  manager_id: String,
-  
+  // from companyId , we can get devices Id
+  company:{
+    type: mongoose.Schema.ObjectId,
+    ref: 'Company',
+    required: [true, 'Must belong a company']
+  }
 });
 
 module.exports = mongoose.model('Register', Register);
+
+//QUERY MIDDLEWARE
+  Register.pre(/^find/, function(next){
+    this.populate({
+      path:'company',
+      select: 'device'
+    })
+    next();
+  })

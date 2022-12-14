@@ -5,7 +5,7 @@ const router = express.Router();
 const homeController = require('../app/controllers/HomeController');
 const middleWare = require('../app/middlewares/middle');
 
-router.get('/:slug/create', homeController.createHistory);
+
 router.get('/logout', homeController.logout);
 router.get(
   '/',
