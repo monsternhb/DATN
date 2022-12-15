@@ -37,9 +37,6 @@ class HistoryController {
 
      const newHis = new History( {behavior: req.body.behavior, user : req.body.user });
      newHis.save();
-    //  newHis.behavior = req.body.behavior;
-      // const newHis = await History.create([{ behavior: 'Jean-Luc Picard' }]);
-      // console.log(newHis,'aaaa');
     } catch (err){
       res.send(err.message);
     }

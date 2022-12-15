@@ -11,7 +11,7 @@ const Register= new Schema({
       maxlength: [40, 'A user name must have less or equal then 40 characters'],
       minlength: [3, 'A user name must have more or equal then 3 characters']
   },
-  pass_word: {
+  pass: {
       type: String,
       required: [true, 'Must have a password'],
       trim: true,
@@ -30,8 +30,17 @@ const Register= new Schema({
   company:{
     type: mongoose.Schema.ObjectId,
     ref: 'Company',
-    required: [true, 'Must belong a company']
-  }
+  },
+
+  name: {
+    type: String,
+    trim: true,
+  },
+  
+  devices: {
+    type: Array,
+    trim: true,
+  },
 });
 
 module.exports = mongoose.model('Register', Register);

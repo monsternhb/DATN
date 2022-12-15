@@ -8,9 +8,13 @@ class RegisterController {
   // [GET] / register
   index(req, res, next) {
     const role = req.data._doc.role;
+    const company = req.name;
+    const devs = req.devices;
+
+    console.log(typeof(devs),'ccccc', req.data);
     Register.find({})
       .then(registers => {
-        res.render('register', { registers: multiMongooseToObject(registers), role});
+        res.render('register', { registers: multiMongooseToObject(registers), role, company, devices: devs});
       })
       .catch(next);
   }
@@ -20,9 +24,16 @@ class RegisterController {
     try{
       //get data register
       const userName = req.body.user_name;
-      const passWord = req.body.pass_word;
+      const passWord = req.body.pass;
       const confirm = req.body.confirm;
-      
+
+    
+       //alow nested routes 
+     if(!req.body.devices) req.body.devices = req.devices;
+     //from middleware
+     if(!req.body.name) req.body.name = req.name;
+
+
       //validate
       if (confirm !== passWord) throw new Error('Wrong confirm password'); 
       if (!userName || !passWord) throw new Error('May be you miss user name or pass word');     

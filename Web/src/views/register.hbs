@@ -19,14 +19,14 @@
 
           <!-- In practice, use type="password" -->
           <div class='login'>
-            <label for='pass_word'></label>
+            <label for='pass'></label>
             <input
               type='password'
               placeholder='PIN'
               minlength='3'
               class='login__input login__input--pin'
               id='pass'
-              name='pass_word'
+              name='pass'
             />
             <input
               type='password'
@@ -55,6 +55,32 @@
             </select>
           </div>
 
+          <button class='login__btn'>&rarr;</button>
+        </form>
+      </div>
+
+      <div class='grid__column-2 form-reg'>
+        <p class='welcome'>Device information</p>
+        <form class='login' method='POST' action='/device/save'>
+
+          <div class='login'>
+            <select name='ip_add' class='login__input login__input--user'>
+              {{#each devices}}
+                <option value={{this}}>{{this}}</option>
+               {{/each}}
+            </select>
+          </div>
+
+          <div class='login'>
+            <label for='name'></label>
+            <input
+              type='text'
+              placeholder='Device name'
+              class='login__input login__input--user'
+              id='user_name'
+              name='name'
+            />
+          </div>
           <button class='login__btn'>&rarr;</button>
         </form>
       </div>

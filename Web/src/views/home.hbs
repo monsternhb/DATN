@@ -171,6 +171,20 @@
   </div>
 </div>
 
+<div class="dev__option">
+   <form class='login' method='GET' action='/home/device/:id/user/id'>
+
+          <div class='login'>
+            <select name='ip_add' class='login__input login__input--user'>
+              {{#each devices}}
+                <option value={{this}}>{{this}}</option>
+               {{/each}}
+            </select>
+          </div>
+          <button class='login__btn'>&rarr;</button>
+        </form>
+</div>
+
 <script src='/socket.io/socket.io.js'></script>
 <script>
   document.addEventListener('DOMContentLoaded', async function(){ 

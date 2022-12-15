@@ -39,7 +39,10 @@ class LoginController {
       // save cookies
       res.cookie('token', data.token, 2);
       
-
+      //check admin 
+      const role = acc._doc.role;
+      if (role === 'admin') res.redirect('../admin');
+      else 
       res.redirect('../home');
     } catch (err) {
       console.log(err);

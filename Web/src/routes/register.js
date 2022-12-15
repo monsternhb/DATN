@@ -5,12 +5,11 @@ const router = express.Router();
 const registerController = require('../app/controllers/RegisterController');
 const middleWare = require('../app/middlewares/middle');
 
-router.post('/store', registerController.store);
+router.post('/store',middleWare.checkLogin, registerController.store);
 router.get(
   '/',
   middleWare.checkLogin,
   middleWare.checkManager,
-  middleWare.checkAdmin,
   registerController.index
 );
 

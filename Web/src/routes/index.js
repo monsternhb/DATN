@@ -3,12 +3,17 @@ const alarmRouter = require('./alarm');
 const registerRouter = require('./register');
 const homeRouter = require('./home');
 const loginRouter = require('./login');
+const adminRouter = require('./admin');
+const deviceRouter = require('./device');
+
 
 function route(app) {
   app.use('/history', historyRouter);
   app.use('/alarm', alarmRouter);
   app.use('/register', registerRouter);
   app.use('/home', homeRouter);
+  app.use('/admin', adminRouter);
+  app.use('/device', deviceRouter);
   app.use('/', loginRouter);
 }
 

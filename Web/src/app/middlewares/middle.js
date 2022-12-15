@@ -22,6 +22,12 @@ class Middleware {
       //send user to client
       req.user = req.data.id;
 
+      // list devices []
+      req.devices = req.data.devices;
+
+      // company name
+      req.name = req.data.name;
+
       next();
     } catch (err) {
       res.json(err.message);
@@ -48,7 +54,10 @@ class Middleware {
 
   checkManager(req, res, next) {
     const role = req.data._doc.role;
-    if (role === 'manager'|| role === 'admin') next();
+    if (role === 'manager'|| role === 'admin') {
+      req.data = req.data;
+      next();
+    }
     else {
       res.json('NOT PERMISSION!!!');
     }

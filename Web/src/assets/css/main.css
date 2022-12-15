@@ -188,7 +188,7 @@
   margin-right: 8px;
 }
 
-.container {
+.containerrrr {
   background-image: var(--color-background);
 }
 
@@ -602,4 +602,14 @@
 
 .active {
   display: block;
+}
+
+.dev__option{
+  display: block;
+  height: 100px;
+  width: 100px;
+  position: relative;
+  top: -180px;
+  right: -13px;
+  z-index: 1000;
 }
