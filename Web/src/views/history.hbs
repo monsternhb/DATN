@@ -34,15 +34,15 @@
     <div class='grid__row'>
       <!-- table tittle -->
       <div class='table table__header'>
-        <span class='table__id'>ID</span>
+        <span class='table__id'>User</span>
         <span class='table__time'>Time</span>
-        <span class='table__controller'>Controller</span>
+        <span class='table__controller'>Behavior</span>
       </div>
 
       <!-- Table data -->
       {{#each histories}}
         <div class='table table__data'>
-          <span class='table__id'>{{this._id}}</span>
+          <span class='table__id'>{{this.user_name}}</span>
           <span class='table__time'>{{formatDate this.time}}</span>
           <span class='table__controller'>{{this.behavior}}</span>
         </div>
@@ -52,17 +52,35 @@
   </div>
 
   {{!-- Pagination --}}
-  <div class="current__page" id={{page}}></div>
-  <ul class="pagination__list home__pagination" id={{pages}} >
+  {{!-- <div class="current__page" id={{page}}></div>
+  <ul class="pagination__list home__pagination" id={{numPage}} > --}}
                   
-
+  <div class="pagination pagination__list pagination-centered">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        {{#times pagination.numPage}}
+            <li class="page-item"><a class="page-link" href="?page={{this}}">{{this}}</a></li>
+        {{/times}}
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
                   
 
                 
   </ul>
 </div>
 
-<script>
+{{!-- <script>
   document.addEventListener('DOMContentLoaded', async function(){ 
 
     //handle pagination
@@ -163,4 +181,4 @@
 
   })
 
-</script>
+</script> --}}

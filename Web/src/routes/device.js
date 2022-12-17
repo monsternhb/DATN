@@ -8,6 +8,6 @@ const middleWare = require('../app/middlewares/middle');
 
 
 router.post('/save', middleWare.checkLogin,middleWare.checkManager,deviceController.save);
-//router.get('/', adminController.index);
+router.get('/', middleWare.checkLogin, deviceController.index);
 
 module.exports = router;

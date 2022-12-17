@@ -2,13 +2,16 @@
 <div class="dev">
    <form class='login' method='GET' action='/home/device'>
           <div class='login'>
-            <select name='idDev' class='login__input login__input--user'>
-              {{#each objDev}}
-                <option value={{this.id}}>{{this.ip}}</option>
-               {{/each}}
-            </select>
+            <h1 class="">Choose your device bellow</h1>
+            <div class="dev-se">
+              <select name='idDev' class='login__input login__input--user'>
+                {{#each objDev}}
+                  <option value={{this.id}}>{{this.ip}}</option>
+                {{/each}}
+              </select>
+              <button class='login__btn btn--app'>&rarr;</button>
+            </div>
           </div>
-          <button class='login__btn btn--app'>Apply</button>
         </form>
 </div>
 

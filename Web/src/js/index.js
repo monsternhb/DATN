@@ -16,6 +16,8 @@ const { Server } = require('socket.io');
 const io = new Server(server);
 const mqtt = require('mqtt');
 const bodyParser = require('body-parser');
+const paginate = require('handlebars-paginate');
+var Handlebars = require('handlebars');
 
 app.use(express.static(publicPath));
 app.use(methodOverride('_method'));
@@ -59,6 +61,14 @@ app.engine(
 );
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, '../views'));
+Handlebars.registerHelper('paginate', paginate);
+//use for paginates
+Handlebars.registerHelper('times', function(n, block) {
+  var accum = '';
+  for(var i = 1; i <= n; ++i)
+      accum += block.fn(i);
+  return accum;
+});
 
 // console.log("a", path.join(__dirname, "../assets/css/base.css"));
 
@@ -81,7 +91,7 @@ const client = mqtt.connect(connectUrl, {
 
 // socket connection
 io.on('connection', socket => {
-  console.log('a user connected');
+  console.log('user connected');
 
   // receive msg control plc from client
   socket.on('client message', msg => {

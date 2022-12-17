@@ -9,11 +9,6 @@ const UserMiddleWare = require('../app/middlewares/userMiddleware');
 
 
 router.get('/logout', homeController.logout);
-router.get('/device',middleWare.checkLogin,UserMiddleWare.addMore, homeController.device);
-router.get(
-  '/',
-  middleWare.checkLogin,
-  middleWare.checkViewer,
-  homeController.index
-);
+router.get('/device',middleWare.checkLogin,UserMiddleWare.addMore, middleWare.checkViewer, homeController.device);
+
 module.exports = router;

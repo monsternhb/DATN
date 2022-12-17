@@ -7,7 +7,7 @@ const Device = new Schema({
   
   ip_add: 
   {type: String, required: [true, 'A Device must have its device ip address'],
-    unique: true,
+    
     trim: true,},
 
   company: [

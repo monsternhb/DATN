@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const HistorySche = new Schema({
   num_pros: Array,
   behavior: String,
-  time: { type: Date, default: Date.now(), select: false },
+  time: { type: Date, default: Date.now()},
 
   device:{
     type: mongoose.Schema.ObjectId,

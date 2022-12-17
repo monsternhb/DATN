@@ -11,7 +11,7 @@ router.post('/device/:deviceId?/:userName?/:userId?',middleWare.checkLogin,histo
 router.get('/device/:deviceId/',historyController.getAllHistory);
 router.get('/device/:deviceId/:hisId',historyController.getHistorybyId);
 // router.post('/store',historyController.store);
-router.get('/',historyController.index);
+router.get('/:page?',historyController.index);
 
 
 // POST /device/de-id/histories

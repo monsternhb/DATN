@@ -43,7 +43,7 @@ class LoginController {
       const role = acc._doc.role;
       if (role === 'admin') res.redirect('../admin');
       else 
-      res.redirect('../home');
+      res.redirect('/device');
     } catch (err) {
       console.log(err);
       res.json(err.message);

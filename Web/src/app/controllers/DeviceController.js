@@ -3,18 +3,31 @@ const { mongooseToObject } = require('../../helpers/mongooseHelper');
 
 const Device = require('../models/Device');
 
-
-
-
 class DeviceController {
     // [GET] / device
-    // index(req, res, next) {
-    //   Company.find({})
-    //   .then(acc => {
-    //     res.render('admin', { acc: multiMongooseToObject(acc)});
-    //   })
-    //   .catch(next);
-    // }
+    async index(req, res, next) {
+      try{
+        const role = req.data._doc.role;
+        const devs = req.devices;
+        let devsArr = [...devs];
+        
+        // get information of device 
+        let objDev = [];
+        devsArr.forEach( async function(dev,index) {
+          const data = await Device.find({ip_add:dev});
+            const inform = data[0];
+            objDev[index] = {};
+            objDev[index].name = inform.name;
+            objDev[index].id = inform.id;
+            objDev[index].ip = inform.ip_add;     
+        });
+        res.render('device', { role, objDev });
+  
+      }
+      catch(err){
+        res.send(err.message);
+      }
+    }
     
     // [POST] /device/save
 
