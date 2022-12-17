@@ -22,9 +22,12 @@ class Middleware {
       //send user to client
       req.user = req.data.id;
 
+      //user name 
+      req.userName = req.data.user_name;
+
       // list devices []
       req.devices = req.data.devices;
-
+      
       // company name
       req.name = req.data.name;
 

@@ -32,10 +32,11 @@ class HistoryController {
      if(!req.body.device) req.body.device = req.params.deviceId;
      //from middleware
      if(!req.body.user) req.body.user = req.user;
-    
 
-
-     const newHis = new History( {behavior: req.body.behavior, user : req.body.user });
+     if(!req.body.device) req.body.device = req.params.deviceId;
+     if(!req.body.user_name) req.body.user_name = req.params.userName;
+  
+     const newHis = new History(req.body);
      newHis.save();
     } catch (err){
       res.send(err.message);

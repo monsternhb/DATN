@@ -10,8 +10,7 @@ class RegisterController {
     const role = req.data._doc.role;
     const company = req.name;
     const devs = req.devices;
-
-    console.log(typeof(devs),'ccccc', req.data);
+    
     Register.find({})
       .then(registers => {
         res.render('register', { registers: multiMongooseToObject(registers), role, company, devices: devs});

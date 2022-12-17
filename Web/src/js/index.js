@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const app = express();
 const path = require('path');
 const hbs = require('express-handlebars');
@@ -14,6 +15,7 @@ const server = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server);
 const mqtt = require('mqtt');
+const bodyParser = require('body-parser');
 
 app.use(express.static(publicPath));
 app.use(methodOverride('_method'));
@@ -29,6 +31,9 @@ app.use(express.json());
 // HTTP logger
 app.use(morgan('combined'));
 
+app.use(session({secret: 'ssshhhhh'}));
+app.use(bodyParser.json());      
+app.use(bodyParser.urlencoded({extended: true}));
 // Cookie
 app.use(cookieParser());
 

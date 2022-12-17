@@ -1,0 +1,27 @@
+
+<div class="dev">
+   <form class='login' method='GET' action='/home/device'>
+          <div class='login'>
+            <select name='idDev' class='login__input login__input--user'>
+              {{#each objDev}}
+                <option value={{this.id}}>{{this.ip}}</option>
+               {{/each}}
+            </select>
+          </div>
+          <button class='login__btn btn--app'>Apply</button>
+        </form>
+</div>
+
+<script src='/socket.io/socket.io.js'></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async function(){ 
+ 
+  
+  const btnChooseDev = document.querySelector('.btn--app');
+
+   btnChooseDev.addEventListener('click',(e)=>{
+    alert('Selected device!!');
+  })
+
+ });
+</script>

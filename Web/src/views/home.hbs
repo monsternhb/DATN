@@ -3,10 +3,10 @@
     <div class='grid__row'>
       <!-- Hand mode -->
       <div class='grid__column-2-5'>
-        <div class='home__mode'>
+        <div class='home__mode ccc' id={{userName}}>
           <div class='home__mode-hand-mode'>
-            <div class='mode__tittle'>Hand mode</div>
-            <div class='mode__container'>
+            <div class='mode__tittle bbb' id={{devId}}>Hand mode</div>
+            <div class='mode__container aaa' id={{userId}}>
               <button class='btn__primary btn--hand btn--home'>Motor On</button>
               <button class='btn__primary btn--hand btn--home'>Motor Off</button>
               <button class='btn__primary btn--hand btn--home'>Push Out</button>
@@ -171,28 +171,25 @@
   </div>
 </div>
 
-<div class="dev__option">
-   <form class='login' method='GET' action='/home/device/:id/user/id'>
 
-          <div class='login'>
-            <select name='ip_add' class='login__input login__input--user'>
-              {{#each devices}}
-                <option value={{this}}>{{this}}</option>
-               {{/each}}
-            </select>
-          </div>
-          <button class='login__btn'>&rarr;</button>
-        </form>
-</div>
 
 <script src='/socket.io/socket.io.js'></script>
 <script>
   document.addEventListener('DOMContentLoaded', async function(){ 
+  const userName = await document.querySelector('.ccc').id;
+  const devId = await document.querySelector('.bbb').id;
+  const userId = await document.querySelector('.aaa').id;
   
+
+
+
+
+
   // handle  switch 
   const btnSwitch = document.getElementById('btn--switch'); 
   const btnSwleft = document.querySelector('.sw--left'); 
   const btnSwright = document.querySelector('.sw--right');
+ 
 
   btnSwleft.addEventListener('click',(e)=>{ btnSwitch.style.left = '0'; })
   btnSwright.addEventListener('click',(e)=>{ btnSwitch.style.left = '50px'; })
@@ -258,7 +255,7 @@
       // post creat history 
       const mess =  `Click ${behavior} from Web Client`; 
       
-      axios.post('/history/device/123456', { behavior: mess}) 
+      axios.post(`/history/device/${devId}/${userName}/${userId}`, { behavior: mess , device: devId }) 
       .then((res)=>{} )
       .catch(function (error) { console.log(error.message); });
   }); }});
