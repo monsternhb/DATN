@@ -9,17 +9,20 @@ class DeviceController {
       try{
         const role = req.data._doc.role;
         const devs = req.devices;
+        const companyId = req.user;
         let devsArr = [...devs];
         
-        // get information of device 
+        //get information of device 
         let objDev = [];
         devsArr.forEach( async function(dev,index) {
-          const data = await Device.find({ip_add:dev});
+          const data = await Device.find({ip_add:dev , company:companyId});
+          if (data.length != 0) {
             const inform = data[0];
             objDev[index] = {};
             objDev[index].name = inform.name;
             objDev[index].id = inform.id;
             objDev[index].ip = inform.ip_add;     
+          } 
         });
         res.render('device', { role, objDev });
   

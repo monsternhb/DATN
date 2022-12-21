@@ -5,25 +5,6 @@ const History = require('../models/History');
 class HistoryController {
   // [GET] / history? page == {page}
   async index(req, res, next) {
-    // let perPage = 8;
-    // let page = Math.max(0, req.query.page);
-    // // Get data-user-device from database and render it
-    // History.find({}).populate('user')
-    //   .limit(perPage)
-    //   .skip(perPage * page)
-    //   .sort({ time: 'desc' })
-    //   .then(histories => {
-    //     console.log(histories);
-    //     History.count().then(count => {
-    //       res.render('history', {
-    //         histories: multiMongooseToObject(histories),
-    //         page,
-    //         pages: Math.round(count / perPage),
-    //       });
-    //     });
-    //   })
-    //   .catch(next);
-
     try{
       //BUILD QUERY
       //query by device
@@ -58,8 +39,11 @@ class HistoryController {
 
       let pagination ={ page, numPage, perPage};
 
+
+      const devIp = req.session.ipDev;
+        
       //RENDER 
-      res.render('history', { histories: multiMongooseToObject(histories) , pagination: pagination});
+      res.render('history', { histories: multiMongooseToObject(histories) , pagination: pagination , devIp});
 
 
     }catch(err){
@@ -76,7 +60,6 @@ class HistoryController {
      //from middleware
      if(!req.body.user) req.body.user = req.user;
 
-     if(!req.body.device) req.body.device = req.params.deviceId;
      if(!req.body.user_name) req.body.user_name = req.params.userName;
   
      const newHis = new History(req.body);

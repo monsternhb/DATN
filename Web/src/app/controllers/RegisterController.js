@@ -2,18 +2,25 @@ const { multiMongooseToObject } = require('../../helpers/mongooseHelper');
 const { mongooseToObject } = require('../../helpers/mongooseHelper');
 
 const Register = require('../models/Register');
+const Device = require('../models/Device');
 
 class RegisterController {
 
   // [GET] / register
-  index(req, res, next) {
+  async index(req, res, next) {
     const role = req.data._doc.role;
     const company = req.name;
     const devs = req.devices;
     
+    let devTable = await Device.find({company:req.user});
+    if (devTable)
+    devTable =  multiMongooseToObject(devTable);
+
+
+
     Register.find({})
       .then(registers => {
-        res.render('register', { registers: multiMongooseToObject(registers), role, company, devices: devs});
+        res.render('register', { registers: multiMongooseToObject(registers), role, company, devices: devs , devTable});
       })
       .catch(next);
   }

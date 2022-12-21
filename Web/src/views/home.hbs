@@ -172,6 +172,19 @@
 </div>
 
 
+{{#if devIp.ip_add}}
+  <div class="alert alert-light noti__dev" role="alert">
+    {{devIp.ip_add}}
+  </div>
+{{else}}
+  <div class="alert alert-light noti__dev" role="alert">
+    Please select your device!!
+  </div>
+{{/if}}
+
+
+
+
 
 <script src='/socket.io/socket.io.js'></script>
 <script>
