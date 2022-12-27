@@ -30,7 +30,7 @@ class Middleware {
       
       // company name
       req.name = req.data.name;
-
+      
       next();
     } catch (err) {
       res.json(err.message);

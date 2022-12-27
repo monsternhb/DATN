@@ -78,15 +78,15 @@
           <div class='mode__tittle'>Type of Product</div>
           <div class='home__mode-type-product'>
             <div class='home__type-product'>
-              <i class='icon__type fa-solid fa-lightbulb'></i>
+              <i class='icon__type type1 fa-solid fa-lightbulb'></i>
               Type 1
             </div>
             <div class='home__type-product'>
-              <i class='icon__type fa-solid fa-lightbulb'></i>
+              <i class='icon__type type2 fa-solid fa-lightbulb'></i>
               Type 2
             </div>
             <div class='home__type-product'>
-              <i class='icon__type fa-solid fa-lightbulb'></i>
+              <i class='icon__type type3 fa-solid fa-lightbulb'></i>
               Type 3
             </div>
           </div>
@@ -123,7 +123,7 @@
       </div>
 
       <div class='grid__column-2-4'>
-        <div class='home__mode'>
+        <div class='home__mode total--edit'>
           <div class='mode__tittle'>Total products</div>
           <!-- Each product count -->
           <div class='grid__row'>
@@ -192,11 +192,6 @@
   const userName = await document.querySelector('.ccc').id;
   const devId = await document.querySelector('.bbb').id;
   const userId = await document.querySelector('.aaa').id;
-  
-
-
-
-
 
   // handle  switch 
   const btnSwitch = document.getElementById('btn--switch'); 
@@ -226,20 +221,40 @@
   const socket = io(); 
   // render number of current product from sever socket emit //count sp1 
   
-  socket.on('quantityS1', function(msg) { 
+  socket.on('currentSp1', function(msg) { 
     const countSp1 = document.querySelector('.count-sp1'); countSp1.textContent = msg; }); 
   
   //count sp2 
   
-  socket.on('quantityS2', function(msg) { 
+  socket.on('currentSp2', function(msg) { 
     const countSp2 = document.querySelector('.count-sp2'); 
     countSp2.textContent = msg; }); 
     
   //count sp3 
+  socket.on('currentSp3', function(msg) { 
+    const countSp3 = document.querySelector('.count-sp3'); countSp3.textContent = msg; }); 
   
-  socket.on('quantityS3', function(msg) { const countSp3 =
-  document.querySelector('.count-sp3'); countSp3.textContent = msg; }); 
-  
+  //pos1
+   socket.on('pos1', function(msg) { 
+    const type1 = document.querySelector('.type1'); 
+    type1.classList.add('type--active');
+    setTimeout(() => {type1.classList.remove('type--active');}, 2.0 * 1000);
+  });
+
+  //pos2
+   socket.on('pos2', function(msg) { 
+    const type2 = document.querySelector('.type2'); 
+    type2.classList.add('type--active');
+    setTimeout(() => {type2.classList.remove('type--active');}, 2.0 * 1000);
+  });
+
+  //pos3
+   socket.on('pos3', function(msg) { 
+    const type3 = document.querySelector('.type3'); 
+    type3.classList.add('type--active');
+    setTimeout(() => {type3.classList.remove('type--active');}, 2.0 * 1000);
+  });
+
   if (role=== 'viewer'){ 
     // config viewer 
     

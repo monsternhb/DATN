@@ -1,0 +1,10 @@
+app listening on port 3000
+connect DB successful
+user connected
+Mqtt Connected
+Subscribe to topic 'currentSp1'
+Subscribe to topic 'currentSp2'
+Subscribe to topic 'currentSp3'
+Subscribe to topic 'pos1'
+Subscribe to topic 'pos2'
+Subscribe to topic 'pos3'

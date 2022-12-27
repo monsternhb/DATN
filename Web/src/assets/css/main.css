@@ -23,8 +23,8 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  
-  background-image: url(https://thethaovanhoa.mediacdn.vn/372676912336973824/2022/11/17/anh-bai-chinh-trang-10-16687011010261532840668.jpg);
+  opacity: 1;
+  background-image: url(https://anhdephd.vn/wp-content/uploads/2022/04/hinh-nen-desktop-ngoi-chua-am-u.jpg);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: rgba(0, 0, 0, 0.2);
@@ -355,6 +355,10 @@
   color: var(--main-color);
 }
 
+.type--active{
+  color: rgb(248, 232, 3) !important;
+}
+
 .home__mode-type-product {
   display: flex;
   flex-direction: column;
@@ -569,6 +573,25 @@
   width: 60%;
 }
 
+.total--edit{
+  position: relative;
+  right: -230px;
+  bottom: 0;
+}
+
+.btn--device{
+  margin-top: 10px;
+  border-radius: 40px;
+  background: rgb(143, 140, 140);
+  font-size: 2.2rem;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 60%;
+  margin-left: 66px;
+}
+
+
 .login__btn-dev {
   margin-left: 44px;
   margin-top: 30px;
@@ -743,6 +766,7 @@
   font-weight: 300;
   color: #ff562c;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 .form__contain {
@@ -814,4 +838,9 @@
 .form__icon {
   font-size: 1.6rem;
   margin-right: 20px;
+}
+
+.page-link{
+  text-decoration: none;
+  color: rgb(78, 77, 77) !important;
 }

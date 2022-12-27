@@ -19,6 +19,16 @@ const bodyParser = require('body-parser');
 const paginate = require('handlebars-paginate');
 var Handlebars = require('handlebars');
 
+// log file configure
+var fs = require('fs');
+var util = require('util');
+var log_file = fs.createWriteStream(__dirname + '/debug.log', {flags : 'w'});
+var log_stdout = process.stdout;
+console.log = function(d) { //
+  log_file.write(util.format(d) + '\n');
+  log_stdout.write(util.format(d) + '\n');
+};
+
 app.use(express.static(publicPath));
 app.use(methodOverride('_method'));
 // connect to db
@@ -127,7 +137,7 @@ client.on('connect', () => {
 });
 
 // subcribe topic followplc
-const topicSub = ['quantityS1', 'quantityS2', 'quantityS3'];
+const topicSub = ['currentSp1', 'currentSp2', 'currentSp3','pos1','pos2','pos3'];
 topicSub.forEach(topic => {
   client.subscribe(topic, () => {
     console.log(`Subscribe to topic '${topic}'`);

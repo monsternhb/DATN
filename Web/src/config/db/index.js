@@ -11,5 +11,3 @@ const connect = async function () {
 };
 
 module.exports = { connect };
-
-//https://github.com/Automattic/mongoose

@@ -24,6 +24,7 @@ const HistorySche = new Schema({
 });
 
 const History = mongoose.model('History', HistorySche);
+module.exports = History;
 
 
 
@@ -40,11 +41,4 @@ HistorySche.pre(/^find/, function(next){
   next();
 })
 
-// POST /device/de-id/histories
-// luu history
-// GET /device/de-id/histories
-// lay all history of 1 dev
-// GET /device/de-id/histories/his-id
-// filter history
 
-module.exports = History;
