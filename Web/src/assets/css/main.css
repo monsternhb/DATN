@@ -51,7 +51,8 @@
   z-index: 1;
   margin: auto;
   border-radius: 10px;
-  height: 300px;
+  /* height: 350px; */
+  width: 300px;
 }
 
 
@@ -137,7 +138,7 @@
 /* HEADER CSS */
 .header {
   height: 70px;
-  background-color: var(--main-color);
+ 
 }
 
 .header__navbar {
@@ -202,15 +203,15 @@
   height: 40px;
 }
 
-.nav__item:hover {
+/* .nav__item:hover {
   background-color: antiquewhite;
   cursor: pointer;
-}
+} */
 
-.nav__Link {
+/* .nav__Link {
   text-decoration: none;
   color: var(--text-color);
-}
+} */
 
 .nav__icon {
   font-size: 1.4rem;
@@ -218,9 +219,9 @@
   margin-right: 8px;
 }
 
-.containerrrr {
+/* .containerrrr {
   background-image: var(--color-background);
-}
+} */
 
 /* Home CSS */
 
@@ -229,7 +230,7 @@
   margin-top: 4px;
   border-radius: 6px;
   overflow: hidden;
-  background-color: var(--light-background);
+  background-color: #fff;
   min-height: 250px;
 }
 
@@ -237,7 +238,7 @@
   font-size: 1.6rem;
   font-weight: 700;
   text-align: center;
-  background-color: var(--main-color);
+  background-color: var(--color-primary-darker);
   line-height: 2.4rem;
   margin-bottom: 10px;
 }
@@ -253,16 +254,18 @@
   height: 28px;
   margin: 6px;
   flex: 40%;
+  background-color:#d15921c2;
 }
 
 .btn__primary {
   color: var(--white-color);
-  background-image: var(--btn-background);
   font-size: 1.2rem;
   text-transform: uppercase;
   border-color: var(--text-color);
   border-radius: 4px;
 }
+
+
 
 .btn--home:hover {
   cursor: pointer;
@@ -286,10 +289,10 @@
   display: flex;
   justify-content: space-around;
   width: 100px;
-  margin: 8px auto 0 auto;
+  padding: 8px auto 8px auto;
   position: relative;
   border-radius: 30px;
-  background: #fff;
+  background: var(--gradient-primary);
 }
 
 .form-box {
@@ -316,7 +319,7 @@
   position: absolute;
   width: 50px;
   height: 100%;
-  background: var(--btn-background);
+  background-color: #059727c7;
   border-radius: 30px;
   transition: 0.5s;
 }
@@ -381,7 +384,7 @@
 
 .noty__icon {
   font-size: 2.4rem;
-  color: var(--grad-1);
+  color: #acaaaa;
   margin-left: 6px;
 }
 
@@ -414,6 +417,7 @@
   margin-left: 15px;
   width: 70%;
   font-size: 1rem;
+  text-align: center;
 }
 
 .current__count {
@@ -434,13 +438,24 @@
 
 .btn__history,
 .btn__alarm {
-  border-color: var(--grad-1);
-  border-radius: 6px;
+  border: none;
+  border-radius: 30px;
   box-shadow: 2px 2px var(--text-color) 2px;
   cursor: pointer;
   width: 20%;
-  color: var(--text-color);
 }
+.btn__history1{
+  background-color: var(--color-secondary);
+}
+
+.btn__history2{
+  background-color: var(--color-primary);
+}
+
+.btn__history3{
+  background-color: var(--color-tertiary);
+}
+
 
 .form-option,
 .alarm__form-option {
@@ -450,7 +465,8 @@
   width: 50%;
   margin-left: auto;
   margin-right: auto;
-  background-color: var(--light-background);
+  position: relative;
+  left: 100px;
 }
 
 .option-text,
@@ -473,32 +489,36 @@
   margin-top: 6px;
   margin-right: 10px;
   cursor: pointer;
-  border-color: var(--text-color);
+  border:none;
+  color: red;
 }
 
 .history__table,
 .alarm__table{
-  background-color: var(--color-background);
+  background-color: #fff;
   padding: 12px;
   margin: 20px 40px 0 40px;
+  border-radius: 10px;
 }
 
 .reg__table {
   position: relative;
-  background-color: var(--color-background);
+  background-color: #fff;
   padding: 12px;
   margin: 20px 40px 0 40px;
   left: 50px;
-
+  border-radius: 10px;
+ 
 }
 
 .reg__tableb {
   position: relative;
-  background-color: var(--color-background);
+  background-color: #fff;
   padding: 12px;
   margin: 20px 40px 0 40px;
   left: 170px;
-
+  border-radius: 10px;
+  
 }
 
 .table {
@@ -594,7 +614,9 @@
 
 .login__btn-dev {
   margin-left: 44px;
-  margin-top: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
   border-radius: 40px;
   background: rgb(143, 140, 140);
   font-size: 2.2rem;
@@ -638,7 +660,7 @@
 
 
 
-.footer__text {
+/* .footer__text {
   text-align: center;
   color: var(--text-color);
   font-size: 1.4rem;
@@ -650,7 +672,7 @@
   height: 48px;
   border-top: 4px solid var(--main-color);
   background-color: var(--main-color);
-}
+} */
 
 .home__pagination {
   padding: 10px 0 20px 0;
@@ -708,14 +730,21 @@
 
 .noti__dev{
   display: block;
-  width: 205px;;
+  width: 135px;;
   position: relative;
-  top: -145px;
-  right: -13px;
+  top: -52px;
+  right: -839px;
   z-index: 1000;
   font-size: 15px;
   border-radius: 4px;
+  opacity: 0.7;
+  text-align: center;
+  background: var(--gradient-secondary);
+}
 
+.btn--nav{
+  position: relative;
+  top:-10px;
 }
 
 .noti__dev::before {
@@ -726,13 +755,23 @@
   position: absolute;
   left: 3px;
   top: -16px;
+  
+}
+.edit-panel{
+  margin-top: 10px;
+}
+
+.home__mode:hover{
+    cursor: pointer;
+      box-shadow: 0 0 20px 0 rgb(0 0 0 / 10%);
+ 
 }
 
 .dev{
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 82%;
+  /* padding: 100px; */
 }
 
 .dev-se{
@@ -771,6 +810,23 @@
 
 .form__contain {
   margin-top: 20px;
+  
+}
+.register-flex{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.btn--register{
+  border: none;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+  background-color: #939393;
+  font-size: 14px;
+  border-radius: 15px;
+  width: 50%;
+  margin-left: 45px;
 }
 
 .form__cointain-input {
@@ -843,4 +899,79 @@
 .page-link{
   text-decoration: none;
   color: rgb(78, 77, 77) !important;
+}
+
+
+.nav__login {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.welcome {
+  font-size: 1.9rem;
+  font-weight: 500;
+}
+
+.logo {
+  height: 5.25rem;
+}
+
+.login {
+  display: flex;
+}
+
+.gach-ngang{
+  margin-top: 20px;
+}
+
+.btn--app{
+  /* padding: 0.8rem 2.5rem; */
+  height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: #222;
+    border: none;
+}
+
+.login__input {
+  border: none;
+  padding: 0.5rem 2rem;
+  font-size: 1.6rem;
+  font-family: inherit;
+  text-align: center;
+  width: 22rem;
+  border-radius: 10rem;
+  margin-right: 1rem;
+  color: inherit;
+  border: 1px solid #fff;
+  transition: all 0.3s;
+}
+
+.login__input:focus {
+  outline: none;
+  border: 1px solid #ccc;
+}
+
+.login__input::placeholder {
+  color: #bbb;
+}
+
+.login__btn {
+  border: none;
+  background: none;
+  font-size: 2.2rem;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.login__btn:hover,
+.login__btn:focus,
+.btn--sort:hover,
+.btn--sort:focus {
+  outline: none;
+  color: #777;
 }

@@ -28,10 +28,15 @@ html {
 .grid {
   overflow: hidden;
   /* width: 1200px; */
-  height: 506px;
-  max-width: 100%;
+  /* height: 506px; */
+  /* max-width: 100%; */
   /* tu dong can giua */
   margin: 0 auto;
+  padding-left: 100px;
+  padding-right: 100px;
+
+  
+
 }
 
 .grid__full-width {
@@ -52,7 +57,7 @@ html {
 }
 
 .grid__column-10 {
-  width: 83.3334%;
+  width: 100%;
   padding-left: 12px;
   padding-right: 12px;
 }
@@ -62,6 +67,8 @@ html {
   padding-left: 12px;
   padding-right: 12px;
 }
+
+
 
 .grid__column-2-4 {
   width: 40%;

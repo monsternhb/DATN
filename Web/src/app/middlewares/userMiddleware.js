@@ -9,10 +9,7 @@ class UserMiddleware {
       if (!req.query.idDev)
       req.query.idDev = req.session.idDev;
     }
-
-
     next();
-  }
-    
+  }  
 }
 module.exports = new UserMiddleware();

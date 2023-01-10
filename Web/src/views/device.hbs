@@ -1,6 +1,5 @@
-
 <div class="dev">
-   <form class='login' method='GET' action='/home/device'>
+   {{!-- <form class='login' method='GET' action='/home/device'>
           <div class='login'>
             <h1 class="">Choose your device bellow</h1>
             <div class="dev-se">
@@ -12,14 +11,45 @@
               <button class='btn--device'>&rarr;</button>
             </div>
           </div>
-        </form>
+    </form> --}}
+    <div class="header__title">
+            <!-- <h1 onclick="alert('HTML alert')"> -->
+            <h1>
+              DATN
+              <!-- Green highlight effect -->
+              <span class="highlight">IIOT2050</span>
+              and<br /> ung dung trong PLSP theo
+              <span class="highlight"> mau sac</span>
+            </h1>
+
+            <form class='login' method='GET' action='/home/device'>
+              <div class='login'>
+                <h4 class="text--se-dev">Choose your device here</h4>
+                <div class="dev-se">
+                  <select name='idDev' class='login__input login__input--user'>
+                    {{#each objDev}}
+                      <option value={{this.id}}>{{this.ip}}</option>
+                    {{/each}}
+                  </select>
+                  <button class='btn--app'>&rarr;</button>
+                </div>
+              </div>
+            </form>
+
+            
+            <img
+              src="img/hero.png"
+              class="header__img"
+              alt="Minimalist bank items"
+            />
+            {{!-- choose dev --}}
+            
+    </div>
 </div>
 
 <script src='/socket.io/socket.io.js'></script>
 <script>
   document.addEventListener('DOMContentLoaded', async function(){ 
- 
-  
   const btnChooseDev = document.querySelector('.btn--app');
 
    btnChooseDev.addEventListener('click',(e)=>{

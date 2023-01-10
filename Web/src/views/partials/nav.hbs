@@ -1,4 +1,4 @@
-<div class='grid__column-2'>
+{{!-- <div class='grid__column-2'>
   <div class='nav__header'>
     <div
       class='nav__logo-img'
@@ -41,4 +41,63 @@
 
     </ul>
   </div>
-</div>
+</div> --}}
+
+<!-- header -->
+<header class="header">
+      <nav class="nav">
+        <img
+          src="https://cdn.haitrieu.com/wp-content/uploads/2021/09/Logo-DH-Bach-Khoa-HCMUT.png"
+          alt="Bankist logo"
+          class="nav__logo"
+          id="logo"
+          designer="Jonas"
+          data-version-number="3.0"
+        />
+        <ul class="nav__links">
+          <li class="nav__item">
+            <a class="nav__link" href="/home/device">Home</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="/history">History</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="/alarm">Alarm</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="/device">Device</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link nav__link--btn btn--show-modal btn--nav" href="/register"
+              >Register</a>
+          </li>
+          <li class="nav__item">
+            <button class="btn--log-out btn--nav">Log out</button>
+          </li>
+        </ul>
+      </nav>
+      <hr class="gach-ngang" width="90%" align="center" />
+</header>
+
+{{#if devIp.ip_add}}
+  <div class="alert alert-light noti__dev" role="alert">
+    {{devIp.ip_add}}
+  </div>
+{{else}}
+  <div class="alert alert-light noti__dev" role="alert">
+    Please select your device!!
+  </div>
+{{/if}}
+
+<form method="GET" action="/home/logout" name = 'form__log-out'></form>
+
+<script>
+  document.addEventListener('DOMContentLoaded',function(){
+      const btnLogOut = document.querySelector('.btn--log-out');
+      const formLogOut=document.forms['form__log-out'];
+      
+      btnLogOut.addEventListener('click',function(){
+        formLogOut.submit();
+      })
+  })
+</script>

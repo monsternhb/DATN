@@ -25,7 +25,6 @@ class DeviceController {
           } 
         });
         res.render('device', { role, objDev });
-  
       }
       catch(err){
         res.send(err.message);

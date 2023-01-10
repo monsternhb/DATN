@@ -1,6 +1,5 @@
 app listening on port 3000
 connect DB successful
-user connected
 Mqtt Connected
 Subscribe to topic 'currentSp1'
 Subscribe to topic 'currentSp2'
@@ -8,3 +7,266 @@ Subscribe to topic 'currentSp3'
 Subscribe to topic 'pos1'
 Subscribe to topic 'pos2'
 Subscribe to topic 'pos3'
+{
+  devices: [],
+  _id: new ObjectId("6394981964cc622b37275fd0"),
+  user_name: 'admin',
+  pass: 'admin',
+  role: 'admin'
+}
+{
+  devices: [],
+  _id: new ObjectId("6394981964cc622b37275fd0"),
+  user_name: 'admin',
+  pass: 'admin',
+  role: 'admin'
+}
+{
+  _id: new ObjectId("639a01493699ce33a812fe6f"),
+  user_name: 'hcmut',
+  pass: '1111',
+  role: 'manager',
+  name: 'BKHCM',
+  devices: [ '192.168.100.1', '192.168.200.1' ],
+  __v: 0
+}
+{
+  _id: new ObjectId("639a01493699ce33a812fe6f"),
+  user_name: 'hcmut',
+  pass: '1111',
+  role: 'manager',
+  name: 'BKHCM',
+  devices: [ '192.168.100.1', '192.168.200.1' ],
+  __v: 0
+}
+{
+  _id: new ObjectId("639a01493699ce33a812fe6f"),
+  user_name: 'hcmut',
+  pass: '1111',
+  role: 'manager',
+  name: 'BKHCM',
+  devices: [ '192.168.100.1', '192.168.200.1' ],
+  __v: 0
+}
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+{
+  _id: new ObjectId("639a01493699ce33a812fe6f"),
+  user_name: 'hcmut',
+  pass: '1111',
+  role: 'manager',
+  name: 'BKHCM',
+  devices: [ '192.168.100.1', '192.168.200.1' ],
+  __v: 0
+}
+user connected
+user connected
+user connected
+user connected
+{
+  _id: new ObjectId("639a01493699ce33a812fe6f"),
+  user_name: 'hcmut',
+  pass: '1111',
+  role: 'manager',
+  name: 'BKHCM',
+  devices: [ '192.168.100.1', '192.168.200.1' ],
+  __v: 0
+}
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+Click start from Web client
+Click auto from Web client
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+Click motor off from Web client
+Click motor on from Web client
+Click push out from Web client
+Click pull back from Web client
+Click left up from Web client
+Click push out from Web client
+Click motor on from Web client
+Click motor off from Web client
+Click pull back from Web client
+Click push out from Web client
+Click left down from Web client
+Click left up from Web client
+Click hold on from Web client
+Click hold off from Web client
+Click go back from Web client
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+Click auto from Web client
+Click man from Web client
+Click auto from Web client
+Click man from Web client
+Click auto from Web client
+Click man from Web client
+Click auto from Web client
+Click man from Web client
+Click auto from Web client
+Click man from Web client
+user connected
+Click auto from Web client
+Click man from Web client
+Click auto from Web client
+Click man from Web client
+Click auto from Web client
+user connected
+user connected
+Click auto from Web client
+Click man from Web client
+Click auto from Web client
+Click man from Web client
+Click auto from Web client
+user connected
+Click auto from Web client
+Click auto from Web client
+user connected
+user connected
+user connected
+Click auto from Web client
+Click man from Web client
+Click auto from Web client
+Click auto from Web client
+Click man from Web client
+user connected
+Click auto from Web client
+Click man from Web client
+Click auto from Web client
+Click man from Web client
+Click auto from Web client
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+{
+  _id: new ObjectId("639a01493699ce33a812fe6f"),
+  user_name: 'hcmut',
+  pass: '1111',
+  role: 'manager',
+  name: 'BKHCM',
+  devices: [ '192.168.100.1', '192.168.200.1' ],
+  __v: 0
+}
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+user connected
+{
+  _id: new ObjectId("639a01493699ce33a812fe6f"),
+  user_name: 'hcmut',
+  pass: '1111',
+  role: 'manager',
+  name: 'BKHCM',
+  devices: [ '192.168.100.1', '192.168.200.1' ],
+  __v: 0
+}
