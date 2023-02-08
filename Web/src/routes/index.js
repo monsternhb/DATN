@@ -5,6 +5,7 @@ const homeRouter = require('./home');
 const loginRouter = require('./login');
 const adminRouter = require('./admin');
 const deviceRouter = require('./device');
+const supplierRouter = require('./supplier');
 
 
 function route(app) {
@@ -13,6 +14,7 @@ function route(app) {
   app.use('/register', registerRouter);
   app.use('/home', homeRouter);
   app.use('/admin', adminRouter);
+  app.use('/supplier', supplierRouter);
   app.use('/device', deviceRouter);
   app.use('/', loginRouter);
 }

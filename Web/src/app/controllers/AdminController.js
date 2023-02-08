@@ -4,8 +4,6 @@ const { mongooseToObject } = require('../../helpers/mongooseHelper');
 const Company = require('../models/Company');
 const Register = require('../models/Register');
 
-
-
 class AdminController {
     // [GET] / admin
     index(req, res, next) {
@@ -56,6 +54,24 @@ class AdminController {
         res.json(err.message);
       }
     }
+
+    // [GET] /admin/home
+    home(req,res,next){
+      res.render('admin_home');
+    }
+
+    // [GET] /admin/history
+    history(req,res,next){
+      res.render('admin_history');
+    }
+
+    // [GET] /admin/register
+    register(req,res,next){
+      res.render('admin_register');
+    }
+
+
+
   
   }
   

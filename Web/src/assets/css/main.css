@@ -448,6 +448,17 @@
   background-color: var(--color-secondary);
 }
 
+.btn__sup1{
+  background-color: #FD8847;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.btn__sup-add{
+  display: flex;
+  justify-content: center;
+}
+
 .btn__history2{
   background-color: var(--color-primary);
 }
@@ -536,6 +547,7 @@
 }
 
 .table__id,
+.table__col,
 .table__time,
 .table__controller,
 .table__subject,
@@ -950,6 +962,11 @@
   transition: all 0.3s;
 }
 
+.center--table{
+  display: flex;
+  justify-content: center;
+}
+
 .login__input:focus {
   outline: none;
   border: 1px solid #ccc;
@@ -974,4 +991,22 @@
 .btn--sort:focus {
   outline: none;
   color: #777;
+}
+
+.btn--list-sup {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  
+  color: #222;
+  border: none;
+  cursor: pointer;
+}
+
+.btn--sup-edit{
+  background-color: rgba(37, 168, 230, 0.938);
+}
+
+.btn--sup-del{
+  background-color: rgba(224, 40, 40, 0.938);
 }
