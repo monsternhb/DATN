@@ -1,5 +1,11 @@
 const { multiMongooseToObject } = require('../../helpers/mongooseHelper');
+
 const Register = require('../models/Register');
+const Supplier = require('../models/Supplier');
+const Company = require('../models/Company');
+const Unit = require('../models/Unit');
+
+
 const jwt = require('jsonwebtoken');
 
 class LoginController {
@@ -14,17 +20,45 @@ class LoginController {
     try {
       const userName = req.body.user_login;
       const passWord = req.body.pass_login;
+      let acc = 0;
 
-      const acc = await Register.findOne({
+      // check DB supplier login 
+      acc = await Supplier.findOne({
         user_name: userName,
         pass: passWord,
-      });
+      })
+
+      if (!acc) {
+        // check DB company login
+        acc = await Company.findOne({
+          user_name: userName,
+          pass: passWord,
+        })
+      } 
+
+      if (!acc) {
+        // check DB unit login
+        acc = await Unit.findOne({
+          user_name: userName,
+          pass: passWord,
+        })
+      } 
+
+      if (!acc) {
+        // check DB user login
+        acc = await Register.findOne({
+          user_name: userName,
+          pass: passWord,
+        });
+      }
+      
 
       if (!acc) throw new Error('Incorrect username.');
 
       // if(!acc)   return done(null, false, { message: 'Incorrect username.' });
-
       console.log(acc, 'Login success!!');
+    
+      
       let token = jwt.sign({ _id: acc._id }, 'pass');
 
       let data = {
@@ -39,11 +73,16 @@ class LoginController {
       // save cookies
       res.cookie('token', data.token, 2);
       
-      //check admin 
+      //check role
       const role = acc._doc.role;
-      if (role === 'admin') res.redirect('../admin');
-      else 
+
+      //render page of role
+      if (role === 'supplier') res.redirect('../supplier/home');
+      else if (role === 'company') res.redirect('../company');
+      else if (role === 'admin') res.redirect('../admin');
+      else
       res.redirect('/device');
+      
     } catch (err) {
       console.log(err);
       res.json(err.message);

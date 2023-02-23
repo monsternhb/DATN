@@ -913,6 +913,11 @@
   color: rgb(78, 77, 77) !important;
 }
 
+.remov__{
+  text-decoration: none;
+  color: #222;
+  text-decoration: solid;
+}
 
 .nav__login {
   display: flex;

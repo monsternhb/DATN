@@ -21,35 +21,43 @@ const Register= new Schema({
     type: String,
     required: [true, 'A user must have a role'],
     enum: {
-      values: ['viewer', 'operator', 'manager','admin'],
+      values: ['viewer', 'operator', 'manager'],
       message: 'Role is either: viewer, operator, manager'
     },
     default: 'viewer',
   },
+
+  email: {
+    type: String,
+    trim: true,
+  },
+
   // from companyId , we can get devices Id
-  company:{
+  companyID:{
     type: mongoose.Schema.ObjectId,
     ref: 'Company',
   },
 
-  name: {
-    type: String,
-    trim: true,
+  unitID:{
+    type: mongoose.Schema.ObjectId,
+    ref: 'Unit',
   },
+
+  deviceID:[{
+    type: mongoose.Schema.ObjectId,
+    ref: 'Device',
+  }],
+
   
-  devices: {
-    type: Array,
-    trim: true,
-  },
 });
 
-module.exports = mongoose.model('Register', Register);
+module.exports = mongoose.model('Register',Register);
 
 //QUERY MIDDLEWARE
-  Register.pre(/^find/, function(next){
+Register.pre(/^find/, function(next){
     this.populate({
-      path:'company',
-      select: 'device'
+      path:'companyID',
+      // select: 'device'
     })
     next();
   })

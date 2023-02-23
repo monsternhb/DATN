@@ -1,5 +1,8 @@
 const jwt = require('jsonwebtoken');
+const Company = require('../models/Company');
+const Unit = require('../models/Unit');
 const Register = require('../models/Register');
+const Supplier = require('../models/Supplier');
 
 class Middleware {
   // middleware checkLogin
@@ -11,16 +14,26 @@ class Middleware {
       const decodeToken = await jwt.verify(token, 'pass');
 
       // check acc
-      const accArr = await Register.find({ _id: decodeToken._id });
+      let accArr = 0;
+      accArr = await Register.findOne({ _id: decodeToken._id });
+
+
+      if (!accArr) accArr = await Supplier.findOne({ _id: decodeToken._id });
+      if (!accArr) accArr = await Company.findOne({ _id: decodeToken._id });
+      if (!accArr) accArr = await Unit.findOne({ _id: decodeToken._id });
+      
+      
+      // login fail
       if (accArr.length === 0) return res.redirect('/');
 
       // authorization
-      const role = String(accArr[0].role);
+      const role = String(accArr.role);
       if (!role) return res.redirect('/');
 
-      req.data = accArr[0];
+      req.data = accArr;
+
       //send user to client
-      req.user = req.data.id;
+      req.userId = req.data.id;
 
       //user name 
       req.userName = req.data.user_name;

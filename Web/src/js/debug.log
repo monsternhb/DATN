@@ -1,5 +1,8 @@
 app listening on port 3000
 connect DB successful
+[]
+xxxx
+bao
 Mqtt Connected
 Subscribe to topic 'currentSp1'
 Subscribe to topic 'currentSp2'
@@ -7,4 +10,38 @@ Subscribe to topic 'currentSp3'
 Subscribe to topic 'pos1'
 Subscribe to topic 'pos2'
 Subscribe to topic 'pos3'
-user connected
+{
+  _id: new ObjectId("63f58c1a74553d3ddca6a4a3"),
+  user_name: 'supplier',
+  pass: '1234',
+  email: 'nguyenhoangbao.tlvn@gmail.com',
+  role: 'supplier',
+  id: '63f58c1a74553d3ddca6a4a3'
+}
+1+1 = 
+[]
+xxxx
+bao
+[]
+xxxx
+[]
+xxxx
+[]
+xxxx
+[]
+xxxx
+{
+  _id: new ObjectId("63f58c1a74553d3ddca6a4a3"),
+  user_name: 'supplier',
+  pass: '1234',
+  email: 'nguyenhoangbao.tlvn@gmail.com',
+  role: 'supplier',
+  id: '63f58c1a74553d3ddca6a4a3'
+}
+1+1 = 
+[]
+xxxx
+bao
+[]
+xxxx
+bao

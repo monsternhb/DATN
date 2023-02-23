@@ -1,11 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const Company = new Schema({
-  name: {
-    type: String,
-    trim: true,
-  },
+const Supplier = new Schema({
   user_name: {
       type: String,
       required: [true, 'Must have a user name'],
@@ -30,14 +26,9 @@ const Company = new Schema({
 
   role: {
     type: String,
-    default: 'company',
+    default: 'supplier',
   },
-  // deviceId: [
-  //   {
-  //     type: mongoose.Schema.ObjectId,
-  //     ref: 'Device'
-  //   }
-  // ],
+  
   // devices: {
   //   type: Array,
   //   trim: true,
@@ -51,12 +42,8 @@ const Company = new Schema({
 
 );
 
-module.exports = mongoose.model('Company', Company);
+module.exports = mongoose.model('Supplier', Supplier);
 
 
 //QUERY MIDDLEWARE
 // more in tour model - js
-// Company.pre(/^find/,function(next){
-//   this.populate('deviceId');
-//   next();
-// })

@@ -5,13 +5,30 @@ const Device = new Schema({
   name: { type: String, required: [true, 'A Device must have a name']},
   time: { type: Date, default: Date.now(), select: false },
   
-  ip_add: {type: String, required: [true, 'A Device must have its device ip address'],
-    trim: true,},
+  ip_add: {type: String, required: [true, 'A Device must have its device ip address'], trim: true,},
 
-  company:{
+  series_number: {type: String, required: [true, 'A Device must have its Series number'], trim: true,},
+
+  companyID:{
         type: mongoose.Schema.ObjectId,
         ref: 'Company'
-  }
+  },
+
+  supplierID:{
+    type: mongoose.Schema.ObjectId,
+    ref: 'Supplier'
+  },
+
+  // deviceID:{
+  //   type: mongoose.Schema.ObjectId,
+  //   ref: 'Device',
+  //   required: [true, 'Must belong a device']
+  // },
+
+  userID:[{
+    type: mongoose.Schema.ObjectId,
+    ref: 'Register',
+  }],
 
 
   // histories - alarms
@@ -20,15 +37,16 @@ const Device = new Schema({
     toJSON: {virtuals: true},
     toObject: {virtuals: true}
   });
-
-module.exports = mongoose.model('Device', Device);
-//QUERY MIDDLEWARE
-Device.pre(/^find/, function(next){
-  this.populate({
-    path:'company',
-    select: 'name'
+  
+  //QUERY MIDDLEWARE
+  Device.pre(/^find/, function(next){
+    this.populate({
+      path:'companyID',
+      select: 'name'
+    })
+    next();
   })
-})
+module.exports = mongoose.model('Device', Device);
 
 // Virtual populate --- when have 1 device - not all
 // get all history of the device

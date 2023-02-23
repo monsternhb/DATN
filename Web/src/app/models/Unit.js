@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const Company = new Schema({
+const Unit = new Schema({
   name: {
     type: String,
     trim: true,
@@ -30,14 +30,14 @@ const Company = new Schema({
 
   role: {
     type: String,
-    default: 'company',
+    default: 'admin',
   },
-  // deviceId: [
-  //   {
-  //     type: mongoose.Schema.ObjectId,
-  //     ref: 'Device'
-  //   }
-  // ],
+
+  companyID:{
+      type: mongoose.Schema.ObjectId,
+      ref: 'Company'
+    },
+  
   // devices: {
   //   type: Array,
   //   trim: true,
@@ -51,12 +51,12 @@ const Company = new Schema({
 
 );
 
-module.exports = mongoose.model('Company', Company);
+module.exports = mongoose.model('Unit', Unit);
 
 
 //QUERY MIDDLEWARE
 // more in tour model - js
-// Company.pre(/^find/,function(next){
-//   this.populate('deviceId');
-//   next();
-// })
+Unit.pre(/^find/,function(next){
+  this.populate('companyID');
+  next();
+})
