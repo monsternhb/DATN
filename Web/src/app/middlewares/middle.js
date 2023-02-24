@@ -38,6 +38,9 @@ class Middleware {
       //user name 
       req.userName = req.data.user_name;
 
+      //user role
+      req.role = role;
+
       // list devices []
       req.devices = req.data.devices;
       

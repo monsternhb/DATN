@@ -45,7 +45,7 @@
 
 <!-- header -->
 <header class="header">
-      <nav class="nav">
+      <nav class="nav" >
         <img
           src="https://cdn.haitrieu.com/wp-content/uploads/2021/09/Logo-DH-Bach-Khoa-HCMUT.png"
           alt="BK logo"
@@ -55,24 +55,24 @@
           data-version-number="3.0"
         />
         <ul class="nav__links">
-          <li class="nav__item">
-            <a class="nav__link" href="/home/device">Home</a>
+          <li class="nav__item ">
+            <a class="nav__link home" >Home</a>
           </li>
           <li class="nav__item">
-            <a class="nav__link" href="/history">History</a>
+            <a class="nav__link history" >History</a>
           </li>
           <li class="nav__item">
-            <a class="nav__link" href="/alarm">Alarm</a>
+            <a class="nav__link alarm" >Alarm</a>
           </li>
           <li class="nav__item">
-            <a class="nav__link" href="/device">Device</a>
+            <a class="nav__link device" >Device</a>
           </li>
           <li class="nav__item">
-            <a class="nav__link nav__link--btn btn--show-modal btn--nav" href="/register"
+            <a class="nav__link nav__link--btn btn--show-modal btn--nav register" 
               >Register</a>
           </li>
           <li class="nav__item">
-            <button class="btn--log-out btn--nav">Log out</button>
+            <button class="btn--log-out btn--nav" id={{role}}>Log out</button>
           </li>
         </ul>
       </nav>
@@ -95,7 +95,28 @@
   document.addEventListener('DOMContentLoaded',function(){
       const btnLogOut = document.querySelector('.btn--log-out');
       const formLogOut=document.forms['form__log-out'];
+      const role = btnLogOut.id;
+      console.log(`Login by a ${role}`);
+
+      //edit link 
+      const editHome = document.querySelector('.home');
+      const editHistory = document.querySelector('.history');
+      const editAlarm = document.querySelector('.alarm');
+      const editDevice = document.querySelector('.device');
+      const editRegister = document.querySelector('.register');
+
+      editHome.setAttribute('href',`/${role}/home`);
+      editHistory.setAttribute('href',`/${role}/history`);
+      editAlarm.setAttribute('href',`/${role}/alarm`);
+      editDevice.setAttribute('href',`/${role}/device`);
+      editRegister.setAttribute('href',`/${role}/register`);
+
+
+
       
+
+      
+
       btnLogOut.addEventListener('click',function(){
         formLogOut.submit();
       })

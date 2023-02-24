@@ -919,6 +919,10 @@
   text-decoration: solid;
 }
 
+.containerrrr{
+  min-height: 385px;
+}
+
 .nav__login {
   display: flex;
   justify-content: space-between;

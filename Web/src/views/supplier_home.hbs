@@ -36,15 +36,12 @@
 
           
           <div class='table__col'>
-             <button class='btn__primary btn--list-sup btn--sup-del'>
-                 <a href="delete/{{this.name}}/{{this.companyID.name}}"class="remov__"> - </a>
-              </button>
-
-              
-                <button class='btn__primary btn--list-sup btn--sup-edit '>
+              <button class='btn__primary btn--list-sup btn--sup-edit '>
                   <span class="{{this.name}} {{this.ip_add}} {{this.series_number}} {{this._id}}">?</span>
-                </button>
-              
+              </button>
+             <button class='btn__primary btn--list-sup btn--sup-del'>
+                 <span class="{{this._id}}"> - </span>
+              </button>
           </div>
         </div>
       {{/each}}
@@ -104,7 +101,7 @@
 
                       <div class='login'>
                         <select name='companyID' class='login__input login__input--user'>
-                          <option value=''}>None</option>
+                          
                            {{#each companies}}
                               <option value={{this._id}}>{{this.name}}</option>
                            {{/each}}
@@ -170,7 +167,6 @@
 
                       <div class='login'>
                         <select name='companyID' class='login__input login__input--user'>
-                            <option value=''>None</option>
                            {{#each companies}}
                               <option value={{this._id}}>{{this.name}}</option>
                            {{/each}}
@@ -208,6 +204,7 @@
     const editIp = document.querySelector('.edit-ip');
     const editSr = document.querySelector('.edit-sr');
     const editLink = document.querySelector('.edit-link');
+    const btnDelCompany = document.querySelector('.btn--sup-del');
 
 
     btnAddDev.addEventListener('click',function(e){
@@ -225,17 +222,38 @@
     tableContainer.addEventListener('click',(e) =>{
         e.preventDefault(); 
         const btn = e.target.closest('.btn--sup-edit');
-        if (!btn) return;
-        // open form
-        modalContainer2.classList.remove('modal--disable');
-        editForm.classList.remove('modal--disable');
+        const btn1 = e.target.closest('.btn--sup-del');
+        if (!btn && !btn1) return;
 
-        // fill in4 to a form
-        let in4 = btnEditDev.firstElementChild.className.split(' ');
-        editName.setAttribute('placeholder',in4[0]);
-        editIp.setAttribute('placeholder',in4[1]);
-        editSr.setAttribute('placeholder',in4[2]);
-        editLink.setAttribute('action',`update/${in4[3]}`);
+        if (btn){
+          // update dev
+          // open form
+          modalContainer2.classList.remove('modal--disable');
+          editForm.classList.remove('modal--disable');
+
+          // fill in4 to a form
+          let in4 = btnEditDev.firstElementChild.className.split(' ');
+          editName.setAttribute('value',in4[0]);
+          editIp.setAttribute('value',in4[1]);
+          editSr.setAttribute('value',in4[2]);
+          editLink.setAttribute('action',`device/${in4[3]}?_method=PUT`);
+        }
+        else{
+          //delete company of device
+          let in5 = btnDelCompany.firstElementChild.className.split(' ');
+          let idDev = in5[0];
+          const company = in5[1];
+          console.log(idDev,company);
+
+          axios.delete(`http://localhost:3000/supplier/device/${idDev}`, { data: idDev }) 
+          .then((resp)=>{window.location.href = '/supplier/home'} )
+          .catch(function (error) { console.log(error.message); });
+
+
+        }
+
+       
+        
     })
 
 
