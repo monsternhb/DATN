@@ -205,6 +205,9 @@
     const editSr = document.querySelector('.edit-sr');
     const editLink = document.querySelector('.edit-link');
     const btnDelCompany = document.querySelector('.btn--sup-del');
+    let in5;
+    let idDev;
+
 
 
     btnAddDev.addEventListener('click',function(e){
@@ -232,7 +235,7 @@
           editForm.classList.remove('modal--disable');
 
           // fill in4 to a form
-          let in4 = btnEditDev.firstElementChild.className.split(' ');
+          let in4 = btn.firstElementChild.className.split(' ');
           editName.setAttribute('value',in4[0]);
           editIp.setAttribute('value',in4[1]);
           editSr.setAttribute('value',in4[2]);
@@ -240,20 +243,13 @@
         }
         else{
           //delete company of device
-          let in5 = btnDelCompany.firstElementChild.className.split(' ');
-          let idDev = in5[0];
-          const company = in5[1];
-          console.log(idDev,company);
-
+          in5 = btn1.firstElementChild.className.split(' ');
+          idDev = in5[0];
           axios.delete(`http://localhost:3000/supplier/device/${idDev}`, { data: idDev }) 
           .then((resp)=>{window.location.href = '/supplier/home'} )
           .catch(function (error) { console.log(error.message); });
 
-
         }
-
-       
-        
     })
 
 

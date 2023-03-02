@@ -4,7 +4,7 @@
     <div class='grid__row'>
 
       <div class="btn__float">
-        <button type="button" class="btn btn__r btn--reg header__register">CREAT ACCOUNT</button>
+        <button type="button" class="btn btn__r btn--reg header__register">CREAT ACCOUNT FOR COMPANY</button>
       </div>
 
       <div class='grid__column-10'>
@@ -13,19 +13,22 @@
             <!-- table tittle -->
             <div class='table table__header'>
               {{!-- <span class='table__id'>ID</span> --}}
-              <span class='table__col'>STT</span>
-              <span class='table__name'>Name</span>
+              <span class='table__name'>User Name</span>
               <span class='table__col'>Company</span>
+              <span class='table__col'>Email</span>
             </div>
 
             <!-- Table data -->
-            
+            {{#each registers}}
             <div class='table table__data'>
-            <span class='table__col'>1</span>
-            <span class='table__name'>hcmut</span>
-            <span class='table__role'>BKU</span>
+            {{!-- <span class='table__id'>{{this._id}}</span> --}}
+            <span class='table__name'>{{this.user_name}}</span>
+            <span class='table__role'>{{this.name}}</span>
+            <span class='table__role'>{{this.email}}</span>
+
             </div>
 
+            {{/each}}
     
           </div>
         </div>
@@ -47,7 +50,7 @@
               </div>
 
               <div class="form__contain">
-                    <form class='login register-flex' method='POST' action='/register/store'>
+                    <form class='login register-flex' method='POST' action='register/save'>
 
                       <div class='login'>
                         {{!-- <label for='user_name'></label> --}}
@@ -55,8 +58,8 @@
                           type='text'
                           placeholder='Company'
                           class='login__input login__input--user'
-                          id='company'
-                          name='company'
+                          id='name'
+                          name='name'
                         />
                       </div>
 
@@ -92,11 +95,20 @@
                         />
                       </div>
 
-                      
+                      <div class='login'>
+                        {{!-- <label for='user_name'></label> --}}
+                        <input
+                          type='text'
+                          placeholder='Email'
+                          class='login__input login__input--user'
+                          id='email'
+                          name='email'
+                        />
+                      </div>
 
                       <div class='login'>
                         <select name='role' class='login__input login__input--user'>
-                          <option value='admin'>Admin</option>
+                          <option value='company'>company</option>
                         </select>
                       </div>
 

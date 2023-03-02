@@ -16,7 +16,7 @@ class HomeController {
 
     //get information of user from req
     const role = req.data._doc.role;
-    const devId = req.session.idDev; 
+    // const devId = req.session.idDev; 
     const userId = req.user;
     const userName = req.userName;
     

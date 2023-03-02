@@ -16,6 +16,7 @@ class SupplierController {
   // [GET] /supplier/home
   async home(req,res,next){
       try{
+        
         const role =req.role;
         const queryObj ={...req.query};
         const excludeFields =['page','sort','limit','fields'];
@@ -50,34 +51,53 @@ class SupplierController {
         // get data of companies
         const companies = await Company.find();
         
-
+        // alert current device
+        const devIp = req.query.ipDev;
+    
         //RENDER 
-        res.render('supplier_home', { devices: multiMongooseToObject(devices), companies: multiMongooseToObject(companies), role });
+        res.render('supplier_home', { devices: multiMongooseToObject(devices), companies: multiMongooseToObject(companies), role, devIp });
       }catch(err){
         res.send(err.message);
       }
   }
   
   // [GET] /supplier/device
-  device(req, res, next) {
-    const role =req.role;
-    console.log(role);
-    res.render('device',{role});
+  async device(req, res, next) {
+    try{
+      const role =req.role;
+      //get information of device 
+      let objDev = [];
+      const data = await Device.find();  
+      if (data.length != 0) {
+          data.forEach((dev, index) =>{
+            objDev[index] = {};
+            objDev[index].name = dev.name;
+            objDev[index].id = dev.id;
+            objDev[index].ip = dev.ip_add;     
+          })
+        };
+      res.render('device', { role, objDev });
+    }
+    catch(err){
+      res.send(err.message);
+    }
   }
 
 
   // [GET] /supplier/history
   history(req,res,next){
     const role =req.role;
-    console.log(role);
-    res.render('supplier_history',{role});
+    const devIp = req.session.ipDev;
+    // waiting 
+    res.render('supplier_history',{role,devIp});
   }
 
   // [GET] /supplier/alarm
   alarm(req,res,next){
     const role =req.role;
-    console.log(role);
-    res.render('supplier_alarm',{role});
+    const devIp = req.session.ipDev;
+    // waiting
+    res.render('supplier_alarm',{role,devIp});
   }
 
   // [POST] /supplier/device
@@ -108,7 +128,43 @@ class SupplierController {
   // [GET] /supplier/register
   register(req,res,next){
     const role = req.role;
-    res.render('supplier_register',{role});
+    const devIp = req.session.ipDev;
+    Company.find({})
+      .then(registers => {
+        res.render('supplier_register', { registers: multiMongooseToObject(registers), role,devIp});
+      })
+  
+  }
+
+  // [POST] /supplier/register/save
+  async save(req,res,next){
+    try{
+      const role = req.role;
+      //get data register
+      const userName = req.body.user_name;
+      const passWord = req.body.pass;
+      const confirm = req.body.confirm;
+
+      //from middleware
+      if(!req.body.name) req.body.name = req.name;
+
+      //validate
+      if (confirm !== passWord) throw new Error('Wrong confirm password'); 
+      if (!userName || !passWord) throw new Error('May be you miss user name or pass word');     
+
+      // check DB
+      const acc = await Company.find({ user_name: userName });
+      if(acc.length !== 0)  throw new Error('User name has been used');
+      // save acc of company
+      const newAcc = await Company.create(req.body);
+      
+      res.redirect('/supplier/register');
+      console.log('save account of new company to DB successful');
+      
+    }catch(err){
+      console.log(err.message);
+      res.json(err.message);
+    }
   }
 
   // [DELETE] /supplier/device/:id
