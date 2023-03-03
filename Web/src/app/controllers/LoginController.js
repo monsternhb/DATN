@@ -78,8 +78,8 @@ class LoginController {
 
       //render page of role
       if (role === 'supplier') res.redirect('../supplier/home');
-      else if (role === 'company') res.redirect('../company');
-      else if (role === 'admin') res.redirect('../admin');
+      else if (role === 'company') res.redirect('../company/home');
+      else if (role === 'admin') res.redirect('../admin/home');
       else
       res.redirect('/device');
       

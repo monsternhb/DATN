@@ -32,7 +32,7 @@ class Middleware {
 
       req.data = accArr;
 
-      //send user to client
+      //user id
       req.userId = req.data.id;
 
       //user name 

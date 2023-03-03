@@ -4,7 +4,7 @@ const { mongooseToObject } = require('../../helpers/mongooseHelper');
 const Company = require('../models/Company');
 const Register = require('../models/Register');
 
-class AdminController {
+class CompanController {
     // [GET] / admin
     index(req, res, next) {
       Company.find({})

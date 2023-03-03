@@ -18,6 +18,10 @@ const Device = new Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'Supplier'
   },
+  unitID:{
+    type: mongoose.Schema.ObjectId,
+    ref: 'Unit'
+  },
 
   // deviceID:{
   //   type: mongoose.Schema.ObjectId,
@@ -42,6 +46,9 @@ const Device = new Schema({
   Device.pre(/^find/, function(next){
     this.populate({
       path:'companyID',
+      select: 'name'
+    }).populate({
+      path:'unitID',
       select: 'name'
     })
     next();
