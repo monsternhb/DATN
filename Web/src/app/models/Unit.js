@@ -37,6 +37,16 @@ const Unit = new Schema({
       type: mongoose.Schema.ObjectId,
       ref: 'Company'
     },
+
+  unitID:{
+      type: mongoose.Schema.ObjectId,
+      ref: 'Unit'
+    },
+
+  devicesID:[{
+      type: mongoose.Schema.ObjectId,
+      ref: 'Device'
+  }],
   
   // devices: {
   //   type: Array,
@@ -51,12 +61,18 @@ const Unit = new Schema({
 
 );
 
+//QUERY MIDDLEWARE
+Unit.pre(/^find/, function(next){
+  this.populate({
+    path:'companyID',
+    select: 'name'
+  }).populate({
+    path:'unitID',
+    select: 'name'
+  })
+  next();
+})
+
 module.exports = mongoose.model('Unit', Unit);
 
 
-//QUERY MIDDLEWARE
-// more in tour model - js
-Unit.pre(/^find/,function(next){
-  this.populate('companyID');
-  next();
-})

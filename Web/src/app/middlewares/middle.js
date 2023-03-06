@@ -23,7 +23,7 @@ class Middleware {
       if (!accArr) accArr = await Unit.findOne({ _id: decodeToken._id });
       
       
-      // login fail
+      // login again
       if (accArr.length === 0) return res.redirect('/');
 
       // authorization
@@ -44,8 +44,16 @@ class Middleware {
       // list devices []
       req.devices = req.data.devices;
       
-      // company name
+      // user name
       req.name = req.data.name;
+
+      // [special] companyId
+      if (role ==='admin') req.companyID = req.data.companyID.id;
+      if (role ==='manager' || role ==='operator' || role ==='viewer') 
+        {
+          req.unitID = req.data.unitID.id;
+          req.companyID = req.data.companyID.id;
+        }
       
       next();
     } catch (err) {

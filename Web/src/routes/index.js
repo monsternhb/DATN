@@ -3,6 +3,7 @@ const alarmRouter = require('./alarm');
 const registerRouter = require('./register');
 const homeRouter = require('./home');
 const loginRouter = require('./login');
+const unitRouter = require('./unit');
 const companyRouter = require('./company');
 const deviceRouter = require('./device');
 const supplierRouter = require('./supplier');
@@ -13,6 +14,7 @@ function route(app) {
   app.use('/alarm', alarmRouter);
   app.use('/register', registerRouter);
   app.use('/home', homeRouter);
+  app.use('/admin', unitRouter);
   app.use('/company', companyRouter);
   app.use('/supplier', supplierRouter);
   app.use('/device', deviceRouter);

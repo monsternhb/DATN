@@ -8,34 +8,66 @@ const Device = require('../models/Device');
 const { Namespace } = require('socket.io');
 
 
-class RegisterController {
+class UnitController {
 
   // [GET] /company
   index(req, res, next) {
   }
   
-  // [GET] /register/home
+  // [GET] /admin/home
   async home(req,res,next){
       try{       
-        //get user id
-        const userId = req.userId;
+        //get unit id
+        const unitId = req.userId;
+        
         const role =req.role;
-        const userName = req.userName;
+        const queryObj ={...req.query};
+        const excludeFields =['page','sort','limit','fields'];
+        excludeFields.forEach(el => delete queryObj[el]);
+        
+        //edit findById
+        let query = Device.find({unitID: unitId});
+  
+        //SORTING
+          query = query.sort({ time: 'desc' });
+        //PAGINATION
+        
+        // const page = req.query.page*1 || 1;
+        // const perPage = 8;
+        // const skip = (page -1)*perPage;
+        // let numPage = 1;
+        // if(page){
+        //   numPage = await Device.count({query});
+        //   if (skip >= numPage ) throw new Error ('This page does not exist');
+        // }
+        // numPage = Math.ceil(numPage/perPage);
+  
+        // query = query.skip(skip).limit(perPage);
+  
+  
+        //EXCUTE QUERY
+        const devices = await query;
+  
+        // let pagination ={ page, numPage, perPage};
+
+        // get data of managers
+        const managers = await Register.find({unitID: unitId});
+        
         // alert current device
         const devIp = req.query.ipDev;
-        
+    
         //RENDER 
-        res.render('home',{role, userId, userName, devIp});
+        res.render('unit_home', { devices: multiMongooseToObject(devices), managers: multiMongooseToObject(managers), role, devIp });
       }catch(err){
         res.send(err.message);
       }
   }
   
-  // [GET] /register/device
+  // [GET] /admin/device
   async device(req, res, next) {
     try{
       const role =req.role;
-      const unitId = req.unitID;
+      const unitId = req.userId;
       //get information of device 
       let objDev = [];
       const data = await Device.find({unitID: unitId});  
@@ -71,20 +103,20 @@ class RegisterController {
     res.render('supplier_alarm',{role,devIp});
   }
 
-  // [GET] /register/register
+  // [GET] /admin/register
   register(req,res,next){
     const role = req.role;
     const devIp = req.session.ipDev;
     //should add find by ID company
     //from middleware
-    
+    if(!req.unitID) req.unitID = req.userId;
     Register.find({unitID: req.unitID})
       .then(registers => {
         res.render('unit_register', { registers: multiMongooseToObject(registers), role,devIp});
       })
   }
 
-  // [POST] /register/register/save
+  // [POST] /admin/register/save
   async save(req,res,next){
     try{
       const role = req.role;
@@ -96,7 +128,7 @@ class RegisterController {
       //from middleware
       if(!req.body.name) req.body.name = req.name;
       //from middleware
-      if(!req.body.unitID) req.body.unitID = req.unitID;
+      if(!req.body.unitID) req.body.unitID = req.userId;
       //get companyId
       if(!req.body.companyID) req.body.companyID = req.companyID;
       
@@ -111,7 +143,7 @@ class RegisterController {
       // save acc of company
       const newAcc = await Register.create(req.body);
       
-      res.redirect('/register/register');
+      res.redirect('/admin/register');
       console.log(`save account of new user in ${req.name}to DB successful`);
       
     }catch(err){
@@ -135,4 +167,4 @@ class RegisterController {
   }
   
 }
-module.exports = new RegisterController();
+module.exports = new UnitController();

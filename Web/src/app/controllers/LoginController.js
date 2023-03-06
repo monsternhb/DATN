@@ -81,7 +81,7 @@ class LoginController {
       else if (role === 'company') res.redirect('../company/home');
       else if (role === 'admin') res.redirect('../admin/home');
       else
-      res.redirect('/device');
+      res.redirect('register/device');
       
     } catch (err) {
       console.log(err);

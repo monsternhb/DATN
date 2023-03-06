@@ -57,7 +57,8 @@
 
   //change link form
   editForm.setAttribute('action',`/${role}/home`);
-   btnChooseDev.addEventListener('click',(e)=>{
+  if (role ==='manager' || role ==='operator' || role ==='viewer') editForm.setAttribute('action',`/register/home`);;
+  btnChooseDev.addEventListener('click',(e)=>{
     alert('Selected device!!');
   })
 

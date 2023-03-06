@@ -51,13 +51,15 @@ const Register= new Schema({
   
 });
 
-module.exports = mongoose.model('Register',Register);
-
 //QUERY MIDDLEWARE
 Register.pre(/^find/, function(next){
     this.populate({
+      path:'unitID',
+      // select: 'device'
+    }).populate({
       path:'companyID',
       // select: 'device'
     })
     next();
   })
+module.exports = mongoose.model('Register',Register);

@@ -111,6 +111,15 @@
       editDevice.setAttribute('href',`/${role}/device`);
       editRegister.setAttribute('href',`/${role}/register`);
 
+      if (role === 'manager' || role === 'operator' || role === 'viewer'){
+        editHome.setAttribute('href',`/register/home`);
+        editHistory.setAttribute('href',`/register/history`);
+        editAlarm.setAttribute('href',`/register/alarm`);
+        editDevice.setAttribute('href',`/register/device`);
+        editRegister.setAttribute('href',`/register/register`);
+      } 
+
+    if (role === 'viewer') editRegister.classList.add('hidden');
       btnLogOut.addEventListener('click',function(){
         formLogOut.submit();
       })
